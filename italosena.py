@@ -1,18 +1,17 @@
 import pygame
 
-# Classe do Ítalo Sena
+# Classe ItaloSena para o personagem controlável
 class ItaloSena:
-    def __init__(self, posicao_inicial, tamanho=20, velocidade=200):
-        # Posição inicial do personagem
-        self.posicao = pygame.Vector2(posicao_inicial)
-        # Tamanho do círculo que representa o personagem
-        self.tamanho = tamanho
-        # Velocidade do movimento em pixels por segundo
-        self.velocidade = velocidade
+    def __init__(self, posicao_inicial, tamanho=20, velocidade_normal= 200, velocidade_furia=300):
+        self.posicao = pygame.Vector2(posicao_inicial)  # Posição inicial do personagem
+        self.tamanho = tamanho  # Tamanho do círculo que representa o personagem
+        self.velocidade_normal = velocidade_normal  # Velocidade normal de movimento
+        self.velocidade_furia = velocidade_furia  # Velocidade de movimento em fúria
+        self.velocidade = self.velocidade_normal  # Velocidade atual
+        self.em_furia = False  # Estado inicial de fúria
     
     def mover(self, direcao, dt):
-
-        # Muda a posição do personagem com base na direção e no tempo
+        # Movimenta Ítalo com base na direção e no tempo
         if direcao == 'cima':
             self.posicao.y -= self.velocidade * dt
         elif direcao == 'baixo':
@@ -23,8 +22,29 @@ class ItaloSena:
             self.posicao.x += self.velocidade * dt
     
     def renderizar(self, tela):
-        # Desenha o personagem na tela como um círculo amarelo ("pac-man")
+        # Desenha o personagem na tela como um círculo amarelo
         pygame.draw.circle(tela, "yellow", (int(self.posicao.x), int(self.posicao.y)), self.tamanho)
+    
+    def ativar_furia(self):
+        # Ativa o estado de fúria e altera a velocidade
+        self.em_furia = True
+        self.velocidade = self.velocidade_furia
+    
+    def desativar_furia(self):
+        # Desativa o estado de fúria e retorna à velocidade normal
+        self.em_furia = False
+        self.velocidade = self.velocidade_normal
+    
+    def verificar_coleta(self, item):
+        # item será um objeto de uma classe de coletáveis
+        # item.posicao e item.tamanho devem ser atributos dos objetos coletáveis
+        distancia = self.posicao.distance_to(item.posicao)
+        if distancia < self.tamanho + item.tamanho:
+            if item.tipo == 'bolinha_maior':  # Tipo de item a ser definido na classe de coletáveis
+                self.ativar_furia()
+            # Lógica adicional para outros tipos de itens
+            return True
+        return False
 
 # Configuração inicial do pygame
 pygame.init()
@@ -37,15 +57,12 @@ dt = 0
 italo = ItaloSena(posicao_inicial=(screen.get_width() / 2, screen.get_height() / 2))
 
 while running:
-    # Captura eventos, como clicar no botão de fechar a janela
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    # Preenche a tela com uma cor para limpar o quadro anterior
-    screen.fill("dark blue")
+    screen.fill((0, 0, 128))  # Fundo azul escuro
 
-    # Processa a entrada do usuário para mover o Ítalo
     keys = pygame.key.get_pressed()
     if keys[pygame.K_UP]:
         italo.mover('cima', dt)
@@ -56,13 +73,17 @@ while running:
     if keys[pygame.K_RIGHT]:
         italo.mover('direita', dt)
 
+    # Aqui a verificação de coleta seria chamada quando os itens estiverem implementados
+    # Exemplo (comentado, pois item não está definido):
+    # for item in lista_de_itens:
+    #     if italo.verificar_coleta(item):
+    #         # marcar item como coletado
+
     # Renderiza o personagem Ítalo na tela
     italo.renderizar(screen)
 
-    # Atualiza o display com o que foi desenhado
     pygame.display.flip()
 
-    # Controla o FPS e calcula o tempo delta
     dt = clock.tick(60) / 1000
 
 pygame.quit()
