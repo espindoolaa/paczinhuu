@@ -60,6 +60,6 @@ def paredes_na_tela(tamanho_tela, tela):
     desenhar_paredes((331, 707), 282, tela) # Linha 7
     desenhar_paredes((49, 96, 143, 237, 331, 707, 801, 895, 942, 989), 329, tela) # Linha 8
     desenhar_paredes((143, 331, 707, 895), 376, tela) # Linha 9
-    desenhar_paredes((49, 96, 143, 237, 284, 331, 425, 472, 519, 556, 613, 707, 754, 801, 895, 942, 989), 423, tela) # Linha 10
+    desenhar_paredes((49, 96, 143, 237, 284, 331, 425, 472, 519, 566, 613, 707, 754, 801, 895, 942, 989), 423, tela) # Linha 10
     desenhar_paredes((237, 425, 519, 613, 801), 470, tela) # Linha 11
     desenhar_paredes((96, 237, 331, 519, 707, 801, 942), 517, tela) # Linha 12
