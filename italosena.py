@@ -2,9 +2,9 @@ import pygame
 
 # Classe ItaloSena para o personagem controlável
 class ItaloSena:
-    def __init__(self, posicao_inicial, tamanho=20, velocidade_normal= 200, velocidade_furia=300):
+    def __init__(self, posicao_inicial, tamanho=47, velocidade_normal=200, velocidade_furia=300):
         self.posicao = pygame.Vector2(posicao_inicial)  # Posição inicial do personagem
-        self.tamanho = tamanho  # Tamanho do círculo que representa o personagem
+        self.tamanho = tamanho  # Tamanho do quadrado que representa o personagem
         self.velocidade_normal = velocidade_normal  # Velocidade normal de movimento
         self.velocidade_furia = velocidade_furia  # Velocidade de movimento em fúria
         self.velocidade = self.velocidade_normal  # Velocidade atual
@@ -22,8 +22,8 @@ class ItaloSena:
             self.posicao.x += self.velocidade * dt
     
     def renderizar(self, tela):
-        # Desenha o personagem na tela como um círculo amarelo
-        pygame.draw.circle(tela, "yellow", (int(self.posicao.x), int(self.posicao.y)), self.tamanho)
+        # Desenha o personagem na tela como um quadrado amarelo
+        pygame.draw.rect(tela, "yellow", (int(self.posicao.x), int(self.posicao.y), self.tamanho, self.tamanho))
     
     def ativar_furia(self):
         # Ativa o estado de fúria e altera a velocidade
