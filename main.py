@@ -15,9 +15,15 @@ contagem_bolinhas_grandes = 0
 contagem_bolinhas_pequenas = 0
 contagem_camarao = 0
 
-font = pygame.font.Font('fontegamer.ttf', 36)
-placa_image = pygame.image.load('placa.png')
-placa_rect = placa_image.get_rect(topleft=(10, 10))  # Posição da placa na tela
+placa_image = pygame.image.load('placa.png')  # Carrega a imagem da placa
+
+# Fonte
+font = pygame.font.Font('fontegamer.ttf', 25)  # Fonte padrão do Pygame com tamanho 36
+
+# Definição das posições das placas
+placa_rect1 = placa_image.get_rect(topleft=(10, 10))
+placa_rect2 = placa_image.get_rect(topleft=(placa_rect1.right + 10, 10))
+placa_rect3 = placa_image.get_rect(topleft=(placa_rect2.right + 10, 10))
 
 # Inicialização do programa
 posicao_inicial_italo = (517, 380)
@@ -55,10 +61,6 @@ while running:
     # Fundo da praia e as boias (labirinto)
     constantes.SCREEN.blit(constantes.PRAIA, (0, 0))
     constantes.SCREEN.blit(labirinto.labirinto_imagem, labirinto.labirinto_rect.topleft)
-
-    # Renderizar o fundo da placa
-    constantes.SCREEN.blit(placa_image, placa_rect)
-
 
     # Movimentação de Ítalo
     prev_pos = italo.posicao.xy
@@ -104,14 +106,24 @@ while running:
 
     # ----------------------------------------
 
-    # Renderizar o fundo da placa e as contagens na placa
-    # constantes.SCREEN.blit(placa_image, placa_rect)
+    # Renderizar as placas
+    constantes.SCREEN.blit(placa_image, placa_rect1)
+    constantes.SCREEN.blit(placa_image, placa_rect2)
+    constantes.SCREEN.blit(placa_image, placa_rect3)
+
+    # Renderizar as contagens dentro das placas
     texto_bolinhas_grandes = font.render(f'Bolinhas Grandes: {contagem_bolinhas_grandes}', True, (0, 0, 0))
     texto_bolinhas_pequenas = font.render(f'Bolinhas Pequenas: {bolinhas_pequenas.qtd_bolinhas}', True, (0, 0, 0))
     texto_camarao = font.render(f'Camarões: {contagem_camarao}', True, (0, 0, 0))
-    constantes.SCREEN.blit(texto_bolinhas_grandes, (placa_rect.x + 10, placa_rect.y + 10))
-    constantes.SCREEN.blit(texto_bolinhas_pequenas, (placa_rect.x + 10, placa_rect.y + 40))
-    constantes.SCREEN.blit(texto_camarao, (placa_rect.x + 10, placa_rect.y + 70))
+
+    # Posicionar os textos dentro das placas
+    text_rect1 = texto_bolinhas_grandes.get_rect(center=(placa_rect1.centerx, placa_rect1.centery))
+    text_rect2 = texto_bolinhas_pequenas.get_rect(center=(placa_rect2.centerx, placa_rect2.centery))
+    text_rect3 = texto_camarao.get_rect(center=(placa_rect3.centerx, placa_rect3.centery))
+
+    constantes.SCREEN.blit(texto_bolinhas_grandes, text_rect1)
+    constantes.SCREEN.blit(texto_bolinhas_pequenas, text_rect2)
+    constantes.SCREEN.blit(texto_camarao, text_rect3)
 
     pygame.display.flip()
     
