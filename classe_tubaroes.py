@@ -2,20 +2,19 @@ import pygame
 import random
 
 class Tubaroes():
-    def __init__(self, posicao_inicial, velocidade=130):
-        self.posicao = pygame.Vector2(posicao_inicial) 
-        self.velocidade = velocidade 
+    def __init__(self, posicao_inicial, velocidade=2):
+        self.posicao = pygame.Vector2(posicao_inicial)
+        self.velocidade = velocidade
         self.tubarao_tigre = pygame.image.load("tubarao_tigre1.png")
-        self.largura_tubarao, self.altura_tubarao = self.tubarao_tigre.get_size()
-        self.tubarao_tigre = pygame.transform.scale(self.tubarao_tigre, ((1/14.978) * self.largura_tubarao, (1/8.404) * self.altura_tubarao))
+        self.tubarao_x, self.tubarao_y = self.tubarao_tigre.get_size()
+        self.tubarao_tigre = pygame.transform.scale(self.tubarao_tigre, ((1/14.978) * self.tubarao_x, (1/8.404) * self.tubarao_y))
+        self.hit_box = pygame.Rect(self.posicao.x, self.posicao.y, self.tubarao_tigre.get_width(), self.tubarao_tigre.get_height())
+        self.tubarao_mask = pygame.mask.Mask((self.hit_box.width, self.hit_box.height))
 
-
-    # IA reativa (para o desenvolvimento da movimentação reativa, precisarei da poisção do Italo_Sena)
-    def movimentacao(self, furia): 
-        # Movendo o tubarão aleatoriamente com a intenção de atacar 
+    def movimentacao(self, furia, screen):
+        # Movendo o tubarão aleatoriamente com a intenção de atacar ou fugir
+        direction = random.choice(['up', 'down', 'left', 'right'])
         if furia:
-            direction = random.choice(['up', 'down', 'left', 'right'])
-
             if direction == 'up':
                 self.posicao.y -= self.velocidade
             elif direction == 'down':
@@ -25,10 +24,7 @@ class Tubaroes():
             elif direction == 'right':
                 self.posicao.x += self.velocidade
 
-        # Movendo o tubarão aleatoriamente com a intenção de fugir (*por ora está igual ao de cima*).
         else:
-            direction = random.choice(['up', 'down', 'left', 'right'])
-
             if direction == 'up':
                 self.posicao.y -= self.velocidade
             elif direction == 'down':
@@ -37,74 +33,36 @@ class Tubaroes():
                 self.posicao.x -= self.velocidade
             elif direction == 'right':
                 self.posicao.x += self.velocidade
+
 
         # Limites de tela que depois serão substituídos pelos limites das boias.
         if self.posicao.x < 0:
             self.posicao.x = 0
-        elif self.posicao.x + self.largura > screen.get_width():
-            self.posicao.x = screen.get_width() - self.largura
+        elif self.posicao.x + self.tubarao_x > screen[0]:
+            self.posicao.x = screen[0] - self.tubarao_x
 
         if self.posicao.y < 0:
             self.posicao.y = 0
-        elif self.posicao.y + self.altura > screen.get_height():
-            self.posicao.y = screen.get_height() - self.altura
+        elif self.posicao.y + self.tubarao_y > screen[1]:
+            self.posicao.y = screen[1] - self.tubarao_y
+
+        self.hit_box.topleft = (self.posicao.x, self.posicao.y)
 
     def acelerar_desacelerar(self, furia, velocidade):
-        if furia == True: 
-            self.velocidade = 120
+        if furia:
+            self.velocidade = 2
         else:
-            if velocidade < 154:
-                self.velocidade = velocidade + 0.8
+            if velocidade < 4:
+                self.velocidade = velocidade + 0.2
             else:
-                self.velocidade = 154
+                self.velocidade = 4
 
-    '''
-    def colisao(self, furia):
-        if furia == True and colisao_com_italo == True (ou seja, posição italo == positao tutuba, logo):
-            self.posicao_inicial = (screen.get_width() / 2, screen.get_height() / 2)
-            self.velocidade = 180
-    '''
-
-    def render(self, tela):
+    def renderizar(self, tela):
         tela.blit(self.tubarao_tigre, self.posicao)
 
-            
+    def get_mask(self):
+        return pygame.mask.from_surface(self.tubarao_tigre)
 
-
-
-# Configuração inicial do pygame
-pygame.init()
-screen = pygame.display.set_mode((1086, 620))
-clock = pygame.time.Clock()
-running = True
-dt = 0
-posicao_inicial = (screen.get_width() / 2, screen.get_height() / 2)
-
-tubarao1 = Tubaroes(posicao_inicial, 3)
-
-
-# looping infinito para rodar os tubarões
-while running:
-    # Captura eventos, como clicar no botão de fechar a janela
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False  
-    
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_ESCAPE]:
-        running = False
-
-    # Preenche a tela com uma cor para limpar o quadro anterior
-    screen.fill("dark blue")
-
-    # Realiza o movimento aleatório do tubarão
-    tubarao1.movimentacao(furia=False)
-
-    # Desenha o tubarão na interface
-    tubarao1.render(screen)
-    pygame.display.flip()
-
-    # Controla o FPS e calcula o tempo delta.
-    dt = clock.tick(60) / 1000
-
-pygame.quit()
+    def checar_colisao(self, italo):
+        offset = (int(italo.posicao.x - self.posicao.x), int(italo.posicao.y - self.posicao.y))
+        return self.get_mask().overlap(italo.get_mask(), offset) is not None
