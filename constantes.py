@@ -24,4 +24,5 @@ MAPA = [
 ]
 
 # Imagens
-PRAIA = pygame.image.load('praia.jpg')
+PRAIA = pygame.image.load('praia.png')
+BOTAO = pygame.image.load('botao.png')
