@@ -13,34 +13,37 @@ class ItaloSena:
 
         self.em_furia = False
 
+        self.furia_timer = 0  # Temporizador do estado de fúria
+        self.furia_duracao = 10000  # Duração tempo de fúria
+
         self.hit_box = pygame.Rect(self.posicao.x, self.posicao.y, 38, 38)
         self.jogador_mask = pygame.mask.Mask((self.hit_box.width, self.hit_box.height))
 
+    def iniciar_furia(self):
+        self.em_furia = True
+        self.furia_timer = pygame.time.get_ticks()  # Registra o tempo do estado de fúria
     
+    def atualizar_furia(self):
+        if self.em_furia and (pygame.time.get_ticks() - self.furia_timer > self.furia_duracao):
+            self.em_furia = False
+
     def movimentacao(self):
+        if self.em_furia:
+            vel = constantes.VEL_FURIA
+        else:
+            vel = constantes.VEL_NORMAL
+
         if pygame.key.get_pressed()[pygame.K_UP]:
-            if self.em_furia:
-                self.y_velocidade = -constantes.VEL_FURIA
-            else:
-                self.y_velocidade = -constantes.VEL_NORMAL
+            self.y_velocidade = -vel
             self.x_velocidade = 0
         if pygame.key.get_pressed()[pygame.K_DOWN]:
-            if self.em_furia:
-                self.y_velocidade = constantes.VEL_FURIA
-            else:
-                self.y_velocidade = constantes.VEL_NORMAL
+            self.y_velocidade = vel
             self.x_velocidade = 0
         if pygame.key.get_pressed()[pygame.K_LEFT]:
-            if self.em_furia:
-                self.x_velocidade = -constantes.VEL_FURIA
-            else:
-                self.x_velocidade = -constantes.VEL_NORMAL
+            self.x_velocidade = -vel
             self.y_velocidade = 0
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
-            if self.em_furia:
-                self.x_velocidade = constantes.VEL_FURIA
-            else:
-                self.x_velocidade = constantes.VEL_NORMAL
+            self.x_velocidade = vel
             self.y_velocidade = 0
 
         # Movimentação Incremental
@@ -65,23 +68,11 @@ class ItaloSena:
     def renderizar(self):
         # Desenha o personagem na tela como um quadrado amarelo
         pygame.draw.rect(constantes.SCREEN, "yellow", (int(self.posicao.x), int(self.posicao.y), 38, 38))
-    
-    def colisao(self, lista):
-        for parede in lista:
-            if self.hit_box.colliderect(parede):
-                if self.y_velocidade < 0 and self.x_velocidade == 0: 
-                    self.y_italo += 14 
-                elif self.y_velocidade > 0 and self.x_velocidade == 0: 
-                    self.y_italo -= 1 
-                elif self.x_velocidade < 0 and self.y_velocidade == 0: 
-                    self.x_italo += 14 
-                else:                                                 
-                    self.x_italo -= 1
-
-                self.x_velocidade = 0
-                self.y_velocidade = 0
         
     def get_mask(self):
         surface = pygame.Surface((self.hit_box.width, self.hit_box.height), pygame.SRCALPHA)
         surface.fill((255, 255, 255))
         return pygame.mask.from_surface(surface)
+
+    def retornar_posicao(self):
+        return self.posicao
