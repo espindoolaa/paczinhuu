@@ -1,4 +1,5 @@
 import pygame
+import constantes as ct
 
 pygame.init()
 
@@ -23,13 +24,23 @@ class Botoes:
         tela.blit(self.imagem, self.rect)
         tela.blit(self.texto_fonte, self.texto_rect)
 
-    def verificar_clique(self):
+    def verificar_clique(self, tela):
         posicao_mouse = pygame.mouse.get_pos()
 
         if self.rect.collidepoint(posicao_mouse):
-                if pygame.mouse.get_pressed()[0] == 1 and self.clicado == False:
-                    self.clicado = True
+            if pygame.mouse.get_pressed()[0] == 1 and self.clicado == False:
+                self.clicado = True
         
         if pygame.mouse.get_pressed()[0] == 0:
             self.clicado = False
         return self.clicado
+    
+    def verificar_hoover(self, mousex, mousey, tela):
+        mousex, mousey = pygame.mouse.get_pos()
+        if mousex in range(self.rect.left, self.rect.right) and mousey in range(self.rect.top, self.rect.bottom):
+            self.imagem = ct.BOTAO_HOOVER
+            self.desenhar_botao(tela)
+
+        else:
+            self.imagem = ct.BOTAO
+            self.desenhar_botao(tela)

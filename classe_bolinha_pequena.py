@@ -39,4 +39,9 @@ class Bolinha_pequena(ItaloSena):
         for pos in to_remove:
             self.posicoes.remove(pos)
             self.qtd_bolinhas += 1
+
+    def verificar_pegoutodaspequenas(self):
+        if self.qtd_bolinhas == 121:
+            return True
+        return False
         

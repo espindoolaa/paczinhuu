@@ -12,13 +12,14 @@ class Bolinha_grande:
         self.x = posicoes[0]
         self.y = posicoes[1]
         
-    def renderizar(self, screen):
+    def renderizar(self, tela):
         for pos in self.posicoes:
-            pygame.draw.circle(screen, (255, 0, 0), pos, constantes.RAIO_BOLINHA_GRANDE)
+            tela.blit(constantes.PEIXE, pos)
+            #pygame.draw.circle(screen, (255, 0, 0), pos, constantes.RAIO_BOLINHA_GRANDE)
 
-    # def coleta_bolinha_grande(self, ItaloSena):
-    #     retangulo_da_bolinha_grande = pygame.Rect(self.x - self.constantes.RAIO_BOLINHA_GRANDE, self.y - self.constantes.RAIO_BOLINHA_GRANDE, self.constantes.RAIO_BOLINHA_GRANDE*2, self.constantes.RAIO_BOLINHA_GRANDE*2)
-    #     return retangulo_da_bolinha_grande.colliderect(ItaloSena)
+    def coleta_bolinha_grande(self, ItaloSena):
+        retangulo_da_bolinha_grande = pygame.Rect(self.x - self.constantes.RAIO_BOLINHA_GRANDE, self.y - self.constantes.RAIO_BOLINHA_GRANDE, self.constantes.RAIO_BOLINHA_GRANDE*2, self.constantes.RAIO_BOLINHA_GRANDE*2)
+        return retangulo_da_bolinha_grande.colliderect(ItaloSena)
 
     def coleta_bolinha_grande(self, italosena):
         for pos in self.posicoes:
@@ -26,4 +27,9 @@ class Bolinha_grande:
             if retangulo_da_bolinha_grande.colliderect(italosena):
                 self.posicoes.remove(pos)
                 return True
+        return False
+    
+    def verificar_pegoutodasgrandes(self, qtd):
+        if qtd == 4:
+            return True
         return False

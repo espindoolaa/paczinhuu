@@ -11,13 +11,12 @@ def tela_menuinicial():
     screen = pygame.display.set_mode((1075, 614))
 
     imagemfundo_inicial = pygame.image.load(Path('imgs', 'menuinicial.png'))
-    imagem_botao = pygame.image.load(Path('imgs', 'botao.png'))
 
     # Botões da tela de início
     botoes_menu = []
 
-    botao_jogar = bt.Botoes(imagem_botao, 'JOGAR', (543, 300))
-    botao_sair = bt.Botoes(imagem_botao, 'SAIR', (543, 370))
+    botao_jogar = bt.Botoes(ct.BOTAO, 'JOGAR', (543, 300))
+    botao_sair = bt.Botoes(ct.BOTAO, 'SAIR', (543, 370))
 
     botoes_menu.append(botao_jogar)
     botoes_menu.append(botao_sair)
@@ -29,15 +28,21 @@ def tela_menuinicial():
         for botao in botoes_menu:
             bt.Botoes.desenhar_botao(botao, screen)
 
+        for botao in botoes_menu:
+            mousepos = pygame.mouse.get_pos()
+            mouseposx = mousepos[0]
+            mouseposy = mousepos[1]
+            bt.Botoes.verificar_hoover(botao, mouseposx, mouseposy, screen)
+
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            
+
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 for botao in botoes_menu:
-                    clicou = bt.Botoes.verificar_clique(botao)
-                    if clicou == True:  
+                    clicou = bt.Botoes.verificar_clique(botao, screen)
+                    if clicou == True:
                         if botao == botao_jogar:
                             tela_historia()
                         if botao == botao_sair:
@@ -82,11 +87,9 @@ def tela_instrucoes():
 
         pygame.display.update()
 
-#def tela_pausa():
-
 def tela_gameover():
     screen = pygame.display.set_mode((1075, 614))
-    imagemfundo_gameover = pygame.image.load(Path('imgs''gameover.png'))
+    imagemfundo_gameover = pygame.image.load(Path('imgs', 'gameover.png'))
     
     while True:
         screen.blit(imagemfundo_gameover, (0, 0))
@@ -101,7 +104,7 @@ def tela_gameover():
 
 def tela_vitoria():
     screen = pygame.display.set_mode((1075, 614))
-    imagemfundo_vitoria = pygame.image.load(Path('imgs''vitoria.png'))
+    imagemfundo_vitoria = pygame.image.load(Path('imgs', 'vitoria.png'))
     
     while True:
         screen.blit(imagemfundo_vitoria, (0, 0))

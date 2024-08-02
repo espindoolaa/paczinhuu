@@ -1,4 +1,5 @@
 import pygame
+import sys
 import classe_italo
 import constantes
 import classe_tubaroes
@@ -8,6 +9,24 @@ import labirinto
 import coletavel_extra
 from pathlib import Path
 pygame.init()
+
+def tela_vitoria():
+    screen = pygame.display.set_mode((1075, 614))
+    imagemfundo_vitoria = pygame.image.load(Path('imgs', 'vitoria.png'))
+    
+    while True:
+        screen.blit(imagemfundo_vitoria, (0, 0))
+        pygame.display.set_caption('Paczinhuu - VITÓRIA!')
+
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+        pygame.display.update()
+
+# def tela_pause():
+    
 
 def rodar_jogo():
 
@@ -39,7 +58,7 @@ def rodar_jogo():
     italo = classe_italo.ItaloSena(posicao_inicial_italo)
 
     # Posiciona as bolinhas grandes nos cantos
-    bolinhas_grandes = classe_bolinha_grande.Bolinha_grande([(71, 75), (1009, 75), (73, 540), (1006, 540)])
+    bolinhas_grandes = classe_bolinha_grande.Bolinha_grande([(60, 75), (995, 70), (60, 540), (995, 540)])
 
     # Objeto das bolinhas pequenas
     bolinhas_pequenas = classe_bolinha_pequena.Bolinha_pequena(71, 71, bolinhas_grandes, constantes.MAPA)
@@ -49,7 +68,7 @@ def rodar_jogo():
 
     # Objeto dos tubarões (dois ao total)
     tubarao1 = classe_tubaroes.Tubaroes(posicao_inicial_tubarao1)
-
+    
     # Loop do jogo
     while running:
 
@@ -57,6 +76,10 @@ def rodar_jogo():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    paused = True
+        
         
         # Fundo da praia e as boias (labirinto)
         constantes.SCREEN.blit(constantes.PRAIA, (0, 0))
@@ -93,20 +116,20 @@ def rodar_jogo():
         # ----------------- CAMARÃO -------------------
         camarao.atualizar()
 
-        if not camarao.vivo and not camarao.coletado:
+        if camarao.vivo:
             camarao.spawn()
+            camarao.renderizar(constantes.SCREEN)
+        
 
         # Verificar se Ítalo coletou o camarão
         if camarao.verificar_coleta(italo.posicao):
             print("Camarão coletado!")
             contagem_camarao += 1
-
-        # Renderizar o camarão se estiver ativo
-        if camarao.vivo:
-            camarao.renderizar(constantes.SCREEN)
-
+            camarao.coletado = True
+        
         # ----------------------------------------------
 
+        # --------------------------------------------- PLACAS -------------------------------------------------
         # Renderizar as placas
         constantes.SCREEN.blit(placa_image, placa_rect1)
         constantes.SCREEN.blit(placa_image, placa_rect2)
@@ -126,8 +149,13 @@ def rodar_jogo():
         constantes.SCREEN.blit(texto_bolinhas_pequenas, text_rect2)
         constantes.SCREEN.blit(texto_camarao, text_rect3)
 
+        # ---------------------------------------------------------------------------------------------------------
+
+        if classe_bolinha_pequena.Bolinha_pequena.verificar_pegoutodaspequenas(bolinhas_pequenas) and classe_bolinha_grande.Bolinha_grande.verificar_pegoutodasgrandes(bolinhas_grandes, contagem_bolinhas_grandes):
+            tela_vitoria()
         pygame.display.flip()
         
         clock.tick(60)
 
     pygame.quit()
+    sys.exit()

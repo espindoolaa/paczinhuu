@@ -17,15 +17,13 @@ class Coletavel_extra():
         self.image = pygame.image.load(Path('imgs', 'camarao.png'))  # Carrega a imagem do tubarão
         self.tempo_spawn = 0  # Momento em que o tubarão aparece na tela
         self.tempo_vida = 15000  # Tempo de vida do camarão em milisegundos (15 segundos)
-        self.vivo = False
+        self.vivo = True
         self.coletado = False
 
         
     def spawn(self):
-        if not self.vivo and not self.coletado:
-            self.posicao_atual = (80, 80)
-            self.spawn_time = pygame.time.get_ticks()  # Registra o tempo de spawn
-            self.vivo = True
+        if self.vivo and not self.coletado:
+            self.tempo_spawn = pygame.time.get_ticks()  # Registra o tempo de spawn
     
     def renderizar(self, screen):
         if self.vivo:
@@ -34,12 +32,11 @@ class Coletavel_extra():
     def verificar_coleta(self, posicao_italo):
         if self.vivo:
             camarao_rect = self.image.get_rect(topleft=self.posicao_atual)  # Retângulo da colisão do camarão
-            italo_rect = pygame.Rect(posicao_italo.x, posicao_italo.y, 38, 38)  # Retângulo de colisão de Ítalo
+            italo_rect = pygame.Rect(posicao_italo.x, posicao_italo.y, 30, 25)  # Retângulo de colisão de Ítalo
             # Verificar a colisão entre o retângulo do camarão e o retângulo do ítalo
             if camarao_rect.colliderect(italo_rect):
                 self.vivo = False  # "Inativa" o camarão
                 self.coletado = True
-                
                 return True  # Foi coletado
 
         return False
