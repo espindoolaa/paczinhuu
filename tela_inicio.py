@@ -2,7 +2,7 @@ import pygame
 import sys
 import constantes as ct
 import botoes as bt
-from main import rodar_jogo
+import main
 from pathlib import Path
 
 pygame.init()
@@ -27,8 +27,6 @@ def tela_menuinicial():
         pygame.display.set_caption('Paczinhuu - Menu Inicial')
         for botao in botoes_menu:
             bt.Botoes.desenhar_botao(botao, screen)
-
-        for botao in botoes_menu:
             mousepos = pygame.mouse.get_pos()
             mouseposx = mousepos[0]
             mouseposy = mousepos[1]
@@ -83,7 +81,7 @@ def tela_instrucoes():
                 sys.exit()
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_SPACE:
-                    rodar_jogo()
+                    main.rodar_jogo()
 
         pygame.display.update()
 

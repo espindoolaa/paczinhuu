@@ -7,15 +7,16 @@ import classe_bolinha_pequena
 import classe_bolinha_grande
 import labirinto
 import coletavel_extra
+import botoes
 from pathlib import Path
 pygame.init()
 
 def tela_vitoria():
-    screen = pygame.display.set_mode((1075, 614))
+    screen_vit = pygame.display.set_mode((1075, 614))
     imagemfundo_vitoria = pygame.image.load(Path('imgs', 'vitoria.png'))
     
     while True:
-        screen.blit(imagemfundo_vitoria, (0, 0))
+        screen_vit.blit(imagemfundo_vitoria, (0, 0))
         pygame.display.set_caption('Paczinhuu - VITÓRIA!')
 
         for evento in pygame.event.get():
@@ -25,14 +26,13 @@ def tela_vitoria():
 
         pygame.display.update()
 
-# def tela_pause():
-    
-
 def rodar_jogo():
 
     # Variáveis de contagem
     contagem_bolinhas_grandes = 0
     contagem_camarao = 0
+
+    screen = pygame.display.set_mode(constantes.SIZE)
 
     placa_image = pygame.image.load(Path('imgs', 'placa.png'))  # Carrega a imagem da placa
 
@@ -52,9 +52,7 @@ def rodar_jogo():
     pygame.display.set_mode(size)
     pygame.display.set_caption('Paczinhuu')
     clock = pygame.time.Clock()
-
     running = True
-
     italo = classe_italo.ItaloSena(posicao_inicial_italo)
 
     # Posiciona as bolinhas grandes nos cantos
@@ -71,19 +69,15 @@ def rodar_jogo():
     
     # Loop do jogo
     while running:
-
+    
         # Loop eventos
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_p:
-                    paused = True
-        
-        
+
         # Fundo da praia e as boias (labirinto)
-        constantes.SCREEN.blit(constantes.PRAIA, (0, 0))
-        constantes.SCREEN.blit(labirinto.labirinto_imagem, (0,0))
+        screen.blit(constantes.PRAIA, (0, 0))
+        screen.blit(labirinto.labirinto_imagem, (0,0))
 
         # Movimentação de Ítalo
         italo.movimentacao()
@@ -96,13 +90,13 @@ def rodar_jogo():
         if tubarao1.checar_colisao(italo):
             print("Colisão detectada!")
         
-        tubarao1.renderizar(constantes.SCREEN)
+        tubarao1.renderizar(screen)
 
         # ------------------------------
         
         # ---------- BOLINHAS -----------------------------------------------
-        bolinhas_pequenas.renderizar(constantes.SCREEN)
-        bolinhas_grandes.renderizar(constantes.SCREEN)
+        bolinhas_pequenas.renderizar(screen)
+        bolinhas_grandes.renderizar(screen)
 
         bolinhas_pequenas.verificar_colisao(new_position)
 
@@ -118,7 +112,7 @@ def rodar_jogo():
 
         if camarao.vivo:
             camarao.spawn()
-            camarao.renderizar(constantes.SCREEN)
+            camarao.renderizar(screen)
         
 
         # Verificar se Ítalo coletou o camarão
@@ -153,8 +147,8 @@ def rodar_jogo():
 
         if classe_bolinha_pequena.Bolinha_pequena.verificar_pegoutodaspequenas(bolinhas_pequenas) and classe_bolinha_grande.Bolinha_grande.verificar_pegoutodasgrandes(bolinhas_grandes, contagem_bolinhas_grandes):
             tela_vitoria()
-        pygame.display.flip()
-        
+
+        pygame.display.flip()    
         clock.tick(60)
 
     pygame.quit()

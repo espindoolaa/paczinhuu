@@ -84,7 +84,14 @@ class ItaloSena:
         for _ in range(steps):
             if self.x_velocidade != 0:
                 self.posicao.x += self.x_velocidade / steps
+                
+                if self.posicao.x < 0:
+                    self.posicao.x = constantes.SIZE[0]
+                elif self.posicao.x > constantes.SIZE[0]:
+                    self.posicao.x = 0
+
                 self.hit_box.topleft = (self.posicao.x, self.posicao.y)
+
                 if labirinto.checar_colisao(self):
                     self.posicao.x -= self.x_velocidade / steps
                     self.hit_box.topleft = (self.posicao.x, self.posicao.y)
@@ -98,7 +105,6 @@ class ItaloSena:
                     self.hit_box.topleft = (self.posicao.x, self.posicao.y)
                     break
     
-    # Atualização da animação
     def atualizar_animacao(self):
         intervalo_animacao = 100 if self.em_furia else 350
         if pygame.time.get_ticks() - self.timer_animacao > intervalo_animacao:  
