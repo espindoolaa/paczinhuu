@@ -7,7 +7,7 @@ class Botoes:
         self.coord_centro = pygame.Vector2(coord_centro)
         self.imagem = imagem
         self.rect = self.imagem.get_rect(center=(self.coord_centro))
-        fonte_botoes = pygame.font.Font('fontegamer.ttf', 40)
+        fonte_botoes = pygame.font.Font('fontegamer.ttf', 35)
 
         self.texto = texto
         self.texto_fonte = fonte_botoes.render(self.texto, True, (0,0,0))

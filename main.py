@@ -29,8 +29,8 @@ def rodar_jogo():
     posicao_inicial_italo = (517, 380)
     posicao_inicial_tubarao1 = (517, 350)
 
-
     size = (1086, 620)
+    pygame.display.set_mode(size)
     pygame.display.set_caption('Paczinhuu')
     clock = pygame.time.Clock()
 
@@ -77,19 +77,20 @@ def rodar_jogo():
 
         # ------------------------------
         
-        # Bolinhas
+        # ---------- BOLINHAS -----------------------------------------------
         bolinhas_pequenas.renderizar(constantes.SCREEN)
         bolinhas_grandes.renderizar(constantes.SCREEN)
 
         bolinhas_pequenas.verificar_colisao(new_position)
 
-        # Checa e remove bolinhas grandes coletadas
         italo_rect = pygame.Rect(italo.posicao[0], italo.posicao[1], 30, 30)
         if bolinhas_grandes.coleta_bolinha_grande(italo_rect):
             contagem_bolinhas_grandes += 1
             italo.iniciar_furia()
 
-        # -------- CAMARÃO ----------
+        # --------------------------------------------------------------------
+
+        # ----------------- CAMARÃO -------------------
         camarao.atualizar()
 
         if not camarao.vivo and not camarao.coletado:
@@ -104,7 +105,7 @@ def rodar_jogo():
         if camarao.vivo:
             camarao.renderizar(constantes.SCREEN)
 
-        # ----------------------------------------
+        # ----------------------------------------------
 
         # Renderizar as placas
         constantes.SCREEN.blit(placa_image, placa_rect1)
