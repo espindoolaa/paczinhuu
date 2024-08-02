@@ -3,14 +3,15 @@ import sys
 import constantes as ct
 import botoes as bt
 from main import rodar_jogo
+from pathlib import Path
 
 pygame.init()
 
 def tela_menuinicial():
     screen = pygame.display.set_mode((1075, 614))
 
-    imagemfundo_inicial = pygame.image.load('menuinicial.png')
-    imagem_botao = pygame.image.load('botao.png')
+    imagemfundo_inicial = pygame.image.load(Path('imgs', 'menuinicial.png'))
+    imagem_botao = pygame.image.load(Path('imgs', 'botao.png'))
 
     # Botões da tela de início
     botoes_menu = []
@@ -47,7 +48,7 @@ def tela_menuinicial():
 
 def tela_historia():
     screen = pygame.display.set_mode((1075, 614))
-    imagemfundo_historia = pygame.image.load('historia.png')
+    imagemfundo_historia = pygame.image.load(Path('imgs', 'historia.png'))
     
     while True:
         screen.blit(imagemfundo_historia, (0, 0))
@@ -65,7 +66,7 @@ def tela_historia():
 
 def tela_instrucoes():
     screen = pygame.display.set_mode((1075, 614))
-    imagemfundo_instrucoes = pygame.image.load('instrucoes.png')
+    imagemfundo_instrucoes = pygame.image.load(Path('imgs', 'instrucoes.png'))
     
     while True:
         screen.blit(imagemfundo_instrucoes, (0, 0))
@@ -85,7 +86,7 @@ def tela_instrucoes():
 
 def tela_gameover():
     screen = pygame.display.set_mode((1075, 614))
-    imagemfundo_gameover = pygame.image.load('gameover.png')
+    imagemfundo_gameover = pygame.image.load(Path('imgs''gameover.png'))
     
     while True:
         screen.blit(imagemfundo_gameover, (0, 0))
@@ -100,7 +101,7 @@ def tela_gameover():
 
 def tela_vitoria():
     screen = pygame.display.set_mode((1075, 614))
-    imagemfundo_vitoria = pygame.image.load('vitoria.png')
+    imagemfundo_vitoria = pygame.image.load(Path('imgs''vitoria.png'))
     
     while True:
         screen.blit(imagemfundo_vitoria, (0, 0))

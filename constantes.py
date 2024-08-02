@@ -1,4 +1,5 @@
 import pygame
+from pathlib import Path
 
 VEL_NORMAL = 3
 VEL_FURIA = 4
@@ -24,5 +25,5 @@ MAPA = [
 ]
 
 # Imagens
-PRAIA = pygame.image.load('praia.png')
-BOTAO = pygame.image.load('botao.png')
+PRAIA = pygame.image.load(Path('imgs', 'praia.png'))
+BOTAO = pygame.image.load(Path('imgs', 'botao.png'))

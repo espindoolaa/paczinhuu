@@ -1,7 +1,8 @@
 import pygame
 import classe_italo
+from pathlib import Path
 
-labirinto_imagem = pygame.image.load('paredes.png')
+labirinto_imagem = pygame.image.load(Path('imgs', 'paredes.png'))
 labirinto_rect = labirinto_imagem.get_rect()
 labirinto_mask = pygame.mask.from_surface(labirinto_imagem)
 

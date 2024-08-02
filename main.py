@@ -1,5 +1,4 @@
 import pygame
-import random
 import classe_italo
 import constantes
 import classe_tubaroes
@@ -7,17 +6,16 @@ import classe_bolinha_pequena
 import classe_bolinha_grande
 import labirinto
 import coletavel_extra
+from pathlib import Path
 pygame.init()
 
 def rodar_jogo():
-    
 
     # Variáveis de contagem
     contagem_bolinhas_grandes = 0
-    contagem_bolinhas_pequenas = 0
     contagem_camarao = 0
 
-    placa_image = pygame.image.load('placa.png')  # Carrega a imagem da placa
+    placa_image = pygame.image.load(Path('imgs', 'placa.png'))  # Carrega a imagem da placa
 
     # Fonte
     font = pygame.font.Font('fontegamer.ttf', 25)  # Fonte padrão do Pygame com tamanho 36
@@ -62,10 +60,9 @@ def rodar_jogo():
         
         # Fundo da praia e as boias (labirinto)
         constantes.SCREEN.blit(constantes.PRAIA, (0, 0))
-        constantes.SCREEN.blit(labirinto.labirinto_imagem, labirinto.labirinto_rect.topleft)
+        constantes.SCREEN.blit(labirinto.labirinto_imagem, (0,0))
 
         # Movimentação de Ítalo
-        prev_pos = italo.posicao.xy
         italo.movimentacao()
         italo.atualizar_furia()
         new_position = italo.retornar_posicao()
@@ -79,6 +76,7 @@ def rodar_jogo():
         tubarao1.renderizar(constantes.SCREEN)
 
         # ------------------------------
+        
         # Bolinhas
         bolinhas_pequenas.renderizar(constantes.SCREEN)
         bolinhas_grandes.renderizar(constantes.SCREEN)
@@ -91,7 +89,7 @@ def rodar_jogo():
             contagem_bolinhas_grandes += 1
             italo.iniciar_furia()
 
-        # ----- CAMARÃO ------
+        # -------- CAMARÃO ----------
         camarao.atualizar()
 
         if not camarao.vivo and not camarao.coletado:

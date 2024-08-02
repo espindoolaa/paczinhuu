@@ -1,11 +1,12 @@
 import pygame
 import random
+from pathlib import Path
 
 class Tubaroes():
     def __init__(self, posicao_inicial, velocidade=2):
         self.posicao = pygame.Vector2(posicao_inicial)
         self.velocidade = velocidade
-        self.tubarao_tigre = pygame.image.load("tubarao_tigre1.png")
+        self.tubarao_tigre = pygame.image.load(Path('imgs', "tubarao_tigre1.png"))
         self.tubarao_x, self.tubarao_y = self.tubarao_tigre.get_size()
         self.tubarao_tigre = pygame.transform.scale(self.tubarao_tigre, ((1/14.978) * self.tubarao_x, (1/8.404) * self.tubarao_y))
         self.hit_box = pygame.Rect(self.posicao.x, self.posicao.y, self.tubarao_tigre.get_width(), self.tubarao_tigre.get_height())

@@ -3,6 +3,7 @@ import pygame
 import random
 import constantes
 import classe_bolinha_pequena
+from pathlib import Path
 
 
 class Coletavel_extra():
@@ -13,7 +14,7 @@ class Coletavel_extra():
 
     def __init__(self):
         self.posicao_atual = (80, 80)  # Posição atual do coletável extra
-        self.image = pygame.image.load('camarao.png')  # Carrega a imagem do tubarão
+        self.image = pygame.image.load(Path('imgs', 'camarao.png'))  # Carrega a imagem do tubarão
         self.tempo_spawn = 0  # Momento em que o tubarão aparece na tela
         self.tempo_vida = 15000  # Tempo de vida do camarão em milisegundos (15 segundos)
         self.vivo = False
