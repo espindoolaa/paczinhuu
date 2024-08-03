@@ -17,7 +17,7 @@ class ItaloSena:
         self.furia_timer = 0  # Temporizador do estado de fúria
         self.furia_duracao = 10000  # Duração tempo de fúria
 
-        self.hit_box = pygame.Rect(self.posicao.x, self.posicao.y, 30, 25)
+        self.hit_box = pygame.Rect(self.posicao.x, self.posicao.y, 30, 30)
         self.jogador_mask = pygame.mask.Mask((self.hit_box.width, self.hit_box.height))
 
         # Carregar as imagens do personagem

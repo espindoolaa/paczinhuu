@@ -8,21 +8,21 @@ class Botoes:
         self.coord_centro = pygame.Vector2(coord_centro)
         self.imagem = imagem
         self.rect = self.imagem.get_rect(center=(self.coord_centro))
-        fonte_botoes = pygame.font.Font('fontegamer.ttf', 35)
+        self.fonte_botoes = pygame.font.Font('fontegamer.ttf', 35)
 
         self.texto = texto
-        self.texto_fonte = fonte_botoes.render(self.texto, True, (0,0,0))
-        self.texto_rect = self.texto_fonte.get_rect(center=(self.coord_centro))
+        self.texto_normal = self.fonte_botoes.render(self.texto, True, (0,0,0))
+        self.texto_normal_rect = self.texto_normal.get_rect(center=(self.coord_centro))
 
-        self.texto = texto
-        self.texto_fonte = fonte_botoes.render(self.texto, True, (0,0,0))
-        self.texto_rect = self.texto_fonte.get_rect(center=(self.coord_centro))
+        self.texto_hoover = self.fonte_botoes.render(self.texto, True, (255, 255, 255))
+        self.texto_hoover_rect = self.texto_hoover.get_rect(center=(self.coord_centro))
 
         self.clicado = False
+        self.cursor_click = False
 
-    def desenhar_botao(self, tela):
-        tela.blit(self.imagem, self.rect)
-        tela.blit(self.texto_fonte, self.texto_rect)
+    def desenhar_botao(self, tela, imagem, imagemrect, texto, textorect):
+        tela.blit(imagem, imagemrect)
+        tela.blit(texto, textorect)
 
     def verificar_clique(self, tela):
         posicao_mouse = pygame.mouse.get_pos()
@@ -35,12 +35,26 @@ class Botoes:
             self.clicado = False
         return self.clicado
     
-    def verificar_hoover(self, mousex, mousey, tela):
-        mousex, mousey = pygame.mouse.get_pos()
-        if mousex in range(self.rect.left, self.rect.right) and mousey in range(self.rect.top, self.rect.bottom):
+    def verificar_hoover(self, click, padrao):
+        # FALSE - Cursor normal
+        # TRUE - Cursor click
+     
+        posicao_mouse = pygame.mouse.get_pos()
+        if self.rect.collidepoint(posicao_mouse):
+            
             self.imagem = ct.BOTAO_HOOVER
-            self.desenhar_botao(tela)
+            if self.texto_normal_rect.collidepoint(posicao_mouse):
+                Botoes.desenhar_botao(self, ct.SCREEN, self.imagem, self.rect, self.texto_hoover, self.texto_hoover_rect)
+            else:
+                Botoes.desenhar_botao(self, ct.SCREEN, self.imagem, self.rect, self.texto_normal, self.texto_normal_rect)
+            
+            if not self.cursor_click:
+                pygame.mouse.set_cursor(click)
+                self.cursor_click = True
 
         else:
             self.imagem = ct.BOTAO
-            self.desenhar_botao(tela)
+            Botoes.desenhar_botao(self, ct.SCREEN, self.imagem, self.rect, self.texto_normal, self.texto_normal_rect)
+            if self.cursor_click:
+                pygame.mouse.set_cursor(padrao)
+                self.cursor_click = False

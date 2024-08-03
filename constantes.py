@@ -28,6 +28,5 @@ MAPA = [
 PRAIA = pygame.image.load(Path('imgs', 'praia.png'))
 BOTAO = pygame.image.load(Path('imgs', 'botao.png'))
 BOTAO_HOOVER = pygame.image.load(Path('imgs', 'botao_hoover.png'))
-BOTAO_CLICK = pygame.image.load(Path('imgs', 'botao_click.png'))
 peixe = pygame.image.load(Path('imgs', 'peixe.png'))
 PEIXE = pygame.transform.scale_by(peixe, 1/8)

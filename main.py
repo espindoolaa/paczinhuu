@@ -130,8 +130,8 @@ def rodar_jogo():
         constantes.SCREEN.blit(placa_image, placa_rect3)
 
         # Renderizar as contagens dentro das placas
-        texto_bolinhas_grandes = font.render(f'Bolinhas Grandes: {contagem_bolinhas_grandes}', True, (0, 0, 0))
-        texto_bolinhas_pequenas = font.render(f'Bolinhas Pequenas: {bolinhas_pequenas.qtd_bolinhas}', True, (0, 0, 0))
+        texto_bolinhas_grandes = font.render(f'Peixes: {contagem_bolinhas_grandes}', True, (0, 0, 0))
+        texto_bolinhas_pequenas = font.render(f'Bolinhas: {bolinhas_pequenas.qtd_bolinhas}', True, (0, 0, 0))
         texto_camarao = font.render(f'Camarões: {contagem_camarao}', True, (0, 0, 0))
 
         # Posicionar os textos dentro das placas

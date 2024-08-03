@@ -7,17 +7,24 @@ from pathlib import Path
 
 pygame.init()
 
+# ---------------------- CURSOR -------------------------------
+imagem_cursor = pygame.image.load(Path('imgs', 'cursor_click.png'))
+imagem_cursor = pygame.transform.scale_by(imagem_cursor, 1/2)
+cursor_superficie = pygame.Surface(imagem_cursor.get_size(), pygame.SRCALPHA)
+cursor_superficie.blit(imagem_cursor, (0, 0))
+cursor_click = pygame.cursors.Cursor((0, 0), cursor_superficie)
+cursor_padrao = pygame.SYSTEM_CURSOR_ARROW
+
+# --------------------------------------------------------------
+
 def tela_menuinicial():
     screen = pygame.display.set_mode((1075, 614))
-
     imagemfundo_inicial = pygame.image.load(Path('imgs', 'menuinicial.png'))
 
     # Botões da tela de início
     botoes_menu = []
-
     botao_jogar = bt.Botoes(ct.BOTAO, 'JOGAR', (543, 300))
     botao_sair = bt.Botoes(ct.BOTAO, 'SAIR', (543, 370))
-
     botoes_menu.append(botao_jogar)
     botoes_menu.append(botao_sair)
 
@@ -26,11 +33,7 @@ def tela_menuinicial():
         screen.blit(imagemfundo_inicial, (0, 0))
         pygame.display.set_caption('Paczinhuu - Menu Inicial')
         for botao in botoes_menu:
-            bt.Botoes.desenhar_botao(botao, screen)
-            mousepos = pygame.mouse.get_pos()
-            mouseposx = mousepos[0]
-            mouseposy = mousepos[1]
-            bt.Botoes.verificar_hoover(botao, mouseposx, mouseposy, screen)
+            bt.Botoes.verificar_hoover(botao, cursor_click, cursor_padrao)
 
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
@@ -52,6 +55,8 @@ def tela_menuinicial():
 def tela_historia():
     screen = pygame.display.set_mode((1075, 614))
     imagemfundo_historia = pygame.image.load(Path('imgs', 'historia.png'))
+    cursor_padrao = pygame.SYSTEM_CURSOR_ARROW
+    pygame.mouse.set_cursor(cursor_padrao)
     
     while True:
         screen.blit(imagemfundo_historia, (0, 0))
@@ -92,21 +97,6 @@ def tela_gameover():
     while True:
         screen.blit(imagemfundo_gameover, (0, 0))
         pygame.display.set_caption('Paczinhuu - GAME OVER!')
-
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-        pygame.display.update()
-
-def tela_vitoria():
-    screen = pygame.display.set_mode((1075, 614))
-    imagemfundo_vitoria = pygame.image.load(Path('imgs', 'vitoria.png'))
-    
-    while True:
-        screen.blit(imagemfundo_vitoria, (0, 0))
-        pygame.display.set_caption('Paczinhuu - VITÓRIA!')
 
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
