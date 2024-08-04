@@ -1,7 +1,14 @@
 import pygame
-import random
 from pathlib import Path
+from labirinto import checar_colisao
 
+# Esse documento contém a classe dos tubarões
+
+# Haverá dois tubarões no jogo, que derrotam o player caso este colida com algum deles
+
+# Caso o player esteja em estado de fúria (após coletar um baiacu), o player mata o tubarão ao colidir com ele
+
+# ---------------------------------------------------- CLASSE TUBARÕES --------------------------------------------------------
 class Tubaroes():
     def __init__(self, posicao_inicial, velocidade=2):
         self.posicao = pygame.Vector2(posicao_inicial)
@@ -12,43 +19,9 @@ class Tubaroes():
         self.hit_box = pygame.Rect(self.posicao.x, self.posicao.y, self.tubarao_tigre.get_width(), self.tubarao_tigre.get_height())
         self.tubarao_mask = pygame.mask.Mask((self.hit_box.width, self.hit_box.height))
 
-    def movimentacao(self, furia, screen):
-        # Movendo o tubarão aleatoriamente com a intenção de atacar ou fugir
-        direction = random.choice(['up', 'down', 'left', 'right'])
-        if furia:
-            if direction == 'up':
-                self.posicao.y -= self.velocidade
-            elif direction == 'down':
-                self.posicao.y += self.velocidade
-            elif direction == 'left':
-                self.posicao.x -= self.velocidade
-            elif direction == 'right':
-                self.posicao.x += self.velocidade
-
-        else:
-            if direction == 'up':
-                self.posicao.y -= self.velocidade
-            elif direction == 'down':
-                self.posicao.y += self.velocidade
-            elif direction == 'left':
-                self.posicao.x -= self.velocidade
-            elif direction == 'right':
-                self.posicao.x += self.velocidade
-
-
-        # Limites de tela que depois serão substituídos pelos limites das boias.
-        if self.posicao.x < 0:
-            self.posicao.x = 0
-        elif self.posicao.x + self.tubarao_x > screen[0]:
-            self.posicao.x = screen[0] - self.tubarao_x
-
-        if self.posicao.y < 0:
-            self.posicao.y = 0
-        elif self.posicao.y + self.tubarao_y > screen[1]:
-            self.posicao.y = screen[1] - self.tubarao_y
-
-        self.hit_box.topleft = (self.posicao.x, self.posicao.y)
-
+    def movimentacao(self, furia):
+        ...
+        
     def acelerar_desacelerar(self, furia, velocidade):
         if furia:
             self.velocidade = 2
@@ -64,6 +37,7 @@ class Tubaroes():
     def get_mask(self):
         return pygame.mask.from_surface(self.tubarao_tigre)
 
-    def checar_colisao(self, italo):
+    def checar_colisao_complayer(self, italo):
         offset = (int(italo.posicao.x - self.posicao.x), int(italo.posicao.y - self.posicao.y))
         return self.get_mask().overlap(italo.get_mask(), offset) is not None
+# --------------------------------------------------------------------------------------------------------------------------------
