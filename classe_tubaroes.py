@@ -2,6 +2,7 @@ import pygame
 from pathlib import Path
 from labirinto import checar_colisao
 import random
+import constantes
 
 # Esse documento contém a classe dos tubarões
 
@@ -26,10 +27,10 @@ class Tubaroes():
 
     def movimentacao(self, furia):
         direction_vectors = {
-            'up': pygame.Vector2(0, -1),
-            'down': pygame.Vector2(0, 1),
-            'left': pygame.Vector2(-1, 0),
-            'right': pygame.Vector2(1, 0)
+            'U': pygame.Vector2(0, -1),
+            'D': pygame.Vector2(0, 1),
+            'L': pygame.Vector2(-1, 0),
+            'R': pygame.Vector2(1, 0)
         }
 
         if self.nagaiola and not self.saindogaiola:
@@ -54,7 +55,7 @@ class Tubaroes():
             self.hit_box.topleft = (new_position.x, new_position.y)
 
             if checar_colisao(self):
-                possible_directions = ['up', 'down', 'left', 'right']
+                possible_directions = ['U', 'D', 'L', 'R']
                 possible_directions.remove(self.direcao_atual)
                 random.shuffle(possible_directions)
                 for new_direction in possible_directions:
@@ -65,7 +66,34 @@ class Tubaroes():
                         self.posicao = new_position
                         break
             else:
+                coords = [
+                    (212, 71), (400, 71), (682, 71), (870, 71),
+                    (165, 118), (212, 118), (870, 118), (917, 118),
+                    (400, 165), (682, 165),
+                    (400, 212), (541, 212), (682, 212),
+                    (212, 306), (306, 306), (776, 306), (870, 306),
+                    (212, 400), (400, 400), (682, 400), (870, 400),
+                    (165, 494), (212, 494), (400, 494), (682, 494), (870, 494), (917, 494)
+                ]
+                dircoords = [
+                    'DLR', 'DLR', 'DLR', 'DLR',
+                    'ULR', 'UDL', 'UDR', 'ULR',
+                    'UDL', 'UDR',
+                    'UDR', 'ULR', 'UDL',
+                    'UDLR', 'UDL', 'UDR', 'UDLR',
+                    'UDR', 'UDR', 'UDL', 'UDL'
+                    'DLR', 'UDL', 'UDL', 'UDR', 'UDR', 'DLR'
+                ]
+
+                for coord in coords:
+                    if self.posicao.collidepoint(coord):
+                        ...
                 self.posicao = new_position
+
+            if self.posicao.x < 0:
+                self.posicao.x = constantes.SIZE[0]
+            elif self.posicao.x > constantes.SIZE[0]:
+                self.posicao.x = 0
 
             self.hit_box.topleft = (self.posicao.x, self.posicao.y)
         
