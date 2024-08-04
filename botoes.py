@@ -36,8 +36,6 @@ class Botoes:
         return self.clicado
     
     def verificar_hoover(self, click, padrao):
-        # FALSE - Cursor normal
-        # TRUE - Cursor click
      
         posicao_mouse = pygame.mouse.get_pos()
         if self.rect.collidepoint(posicao_mouse):
@@ -56,5 +54,7 @@ class Botoes:
             self.imagem = ct.BOTAO
             Botoes.desenhar_botao(self, ct.SCREEN, self.imagem, self.rect, self.texto_normal, self.texto_normal_rect)
             if self.cursor_click:
+                pygame.mouse.set_cursor(padrao)
+                self.cursor_click = False
                 pygame.mouse.set_cursor(padrao)
                 self.cursor_click = False
