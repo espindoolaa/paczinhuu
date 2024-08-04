@@ -103,7 +103,7 @@ def rodar_jogo():
     pygame.display.set_caption('Paczinhuu')
     font = pygame.font.Font('fontegamer.ttf', 25)
     posicao_inicial_italo = (517, 380)
-    posicao_inicial_tubarao1 = (480, 280)
+    posicao_inicial_tubarao1 = (470, 285)
     clock = pygame.time.Clock()
     running = True
     italo = classe_italo.ItaloSena(posicao_inicial_italo)
