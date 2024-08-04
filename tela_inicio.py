@@ -7,6 +7,10 @@ from pathlib import Path
 
 pygame.init()
 
+# RODE O JOGO AQUI
+
+# Esse documento contém as funções das telas iniciais que haverá no nosso jogo
+
 # ---------------------- CURSOR -------------------------------
 imagem_cursor = pygame.image.load(Path('imgs', 'cursor_click.png'))
 imagem_cursor = pygame.transform.scale_by(imagem_cursor, 1/2)
@@ -14,9 +18,10 @@ cursor_superficie = pygame.Surface(imagem_cursor.get_size(), pygame.SRCALPHA)
 cursor_superficie.blit(imagem_cursor, (0, 0))
 cursor_click = pygame.cursors.Cursor((0, 0), cursor_superficie)
 cursor_padrao = pygame.SYSTEM_CURSOR_ARROW
-
 # --------------------------------------------------------------
 
+
+# ------------------------- MENU INICIAL --------------------------------
 def tela_menuinicial():
     screen = pygame.display.set_mode((1075, 614))
     imagemfundo_inicial = pygame.image.load(Path('imgs', 'menuinicial.png'))
@@ -28,7 +33,7 @@ def tela_menuinicial():
     botoes_menu.append(botao_jogar)
     botoes_menu.append(botao_sair)
 
-    # Rodar tela de início
+    # Loop da tela de início
     while True:
         screen.blit(imagemfundo_inicial, (0, 0))
         pygame.display.set_caption('Paczinhuu - Menu Inicial')
@@ -51,13 +56,17 @@ def tela_menuinicial():
                             sys.exit()
 
         pygame.display.update()
+# ------------------------------------------------------------------------
 
+
+# ----------------------------- HISTÓRIA DO JOGO ---------------------------------
 def tela_historia():
     screen = pygame.display.set_mode((1075, 614))
     imagemfundo_historia = pygame.image.load(Path('imgs', 'historia.png'))
     cursor_padrao = pygame.SYSTEM_CURSOR_ARROW
     pygame.mouse.set_cursor(cursor_padrao)
     
+    # Loop da tela de história
     while True:
         screen.blit(imagemfundo_historia, (0, 0))
         pygame.display.set_caption('Paczinhuu - Instruções')
@@ -71,11 +80,15 @@ def tela_historia():
                     tela_instrucoes()
 
         pygame.display.update()
+# ---------------------------------------------------------------------------------
 
+
+# -------------------------------- INSTRUÇÕES ---------------------------------
 def tela_instrucoes():
     screen = pygame.display.set_mode((1075, 614))
     imagemfundo_instrucoes = pygame.image.load(Path('imgs', 'instrucoes.png'))
     
+    # Loop da tela de instruções
     while True:
         screen.blit(imagemfundo_instrucoes, (0, 0))
         pygame.display.set_caption('Paczinhuu - Instruções')
@@ -89,21 +102,9 @@ def tela_instrucoes():
                     main.rodar_jogo()
 
         pygame.display.update()
+# -----------------------------------------------------------------------------
 
-def tela_gameover():
-    screen = pygame.display.set_mode((1075, 614))
-    imagemfundo_gameover = pygame.image.load(Path('imgs', 'gameover.png'))
-    
-    while True:
-        screen.blit(imagemfundo_gameover, (0, 0))
-        pygame.display.set_caption('Paczinhuu - GAME OVER!')
-
-        for evento in pygame.event.get():
-            if evento.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
-        pygame.display.update()
 
 # Aqui o jogo é rodado
 tela_menuinicial()
+
