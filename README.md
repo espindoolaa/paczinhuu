@@ -17,32 +17,33 @@ Quanto à mecânica do jogo e aos seus elementos, há uma subdivisão em dois gr
 - INSERIR IMAGEM DO JOGO - 
 
 Coletáveis
-- **Peixes:** Ao serem coletados, além de conferir um aumento na pontuação no contador de peixes, também dão à Ítalo o estado de _**fúria**_. Quando Ítalo estiver em _**fúria**_ adquire momentaneamente habilidades de exímio caçador de tubarões, tornando os tutubas apenas peixinhos indefesos. Nessa condição, Ítalo tem sua velocidade aumentada (de x pixels/s para y pixels/s) e é capaz de matar os tubarões, enquanto os tubarões que fogem têm sua velocidade diminuída. Quando esses são mortos nessa fase, voltam para a região de início, esperando alguns segundos para retornarem ao jogo.
-
-- **Bolhas do mar:** Juntam-se com os quatro peixes para ocupar todo o mapa e são convertidos em 1 ponto, quando coletados, no contador de bolhas.
-- **Camarões:** Quando um camarão é coletado, será aumentada a pontuação no placar de camarões. Esse coletável, por sua vez, embora não seja essencial para o fim do jogo (linkar no trecho de início e fim), prova a maestria do jogador na fase principal do PACZINHUU.
+- **Peixes:** Ao serem coletados, além de conferir um aumento na pontuação no contador de peixes, também dão à Ítalo tem sua velocidade aumentada (de x pixels/s para y pixels/s).
+  * colocar nota sobre o não dar fúria *
+    
+- **Bolhas do mar:** Juntam-se com os quatro peixes para ocupar todo o mapa e são convertidos numa pontuação, quando coletados, no contador de bolhas.
+- **Baiacu:** Embora não tão comuns no litoral de Recife, por algumas loucuras que acompanham as mudanças climáticas, eles vieram para em Pernambuco! Esse coletável, além de conferir um aumento na pontuação no contador de baiacus, também dão à Ítalo o estado de _**fúria**_. Quando Ítalo estiver em _**fúria**_, adquire momentaneamente habilidades de exímio caçador de tubarões, tornando os tutubas apenas peixinhos indefesos. Nessa condição, Ítalo tem sua velocidade aumentada (de x pixels/s para y pixels/s) e é capaz de matar os tubarões, enquanto os tubarões que fogem têm sua velocidade diminuída. Quando esses são mortos nessa fase, voltam para a região de início, esperando alguns segundos para retornarem ao jogo.
 
 Não coletáveis
 - **Ítalo sena:** Personagem principal e controlável, que será utilizado pelo player para atingir o objetivo do PACZINHUU.
-- **Tubarões**: Dois deles serão gerados no mapa com o objetivo de atrapalhar Ítalo de completar sua meta principal. Em caso de colisão com o Ítalo sem estar em fúria, acaba com o jogo do personagem principal. 
-
-
-
-
+- **Tubarões**: Dois deles serão gerados no mapa com o objetivo de atrapalhar Ítalo de completar sua meta principal. Em caso de colisão com o Ítalo sem estar em fúria, acaba com o jogo do personagem principal.
 
 ## Organização do código 
 
 ## Ferramentas, Frameworks e Bibliotecas
-Ferramentas
-- Canva
-- DALL-E
-- VsCode
-- Notion
+Para a realização do projeto, utilizou-se de algumas ferramentas e bibliotecas que satisfazessem as necessidades para a criação de um jogo em 2D, com elementos em pixelart. 
+
+
+- Canva: Recurso de design que foi primordial na criação de todas as sprites dos elementos.
+- DALL-E: Essa ferramenta de criação de imagens foi utilizada para a criação do plano de fundo do jogo em pixelart, trazendo a essência que nós queríamos para o cenário. 
+- VsCode: A IDE usada para o desenvolvimento do projeto.
+- Notion: Visando uma 
 - Discord
 - Miro (fazer o esquema da organização do código)
 
 Bibliotecas
-Pygame
+Pygame: Essa biblioteca importa módulos Python projetados para o desenvolvimento de jogos, tal como funcionalidades para controle de eventos, 
+Sys 
+Path (pathlib)
 Time...
 
 
