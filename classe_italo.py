@@ -7,6 +7,7 @@ from pathlib import Path
 
 # --------------------------------------------------------------- CLASSE ÍTALO -----------------------------------------------------------------
 class ItaloSena:
+    # Inicializações
     def __init__(self, posicao_inicial):
         self.posicao = pygame.Vector2(posicao_inicial)
         self.x_velocidade = 0
@@ -111,7 +112,7 @@ class ItaloSena:
                     self.hit_box.topleft = (self.posicao.x, self.posicao.y)
                     break
     
-    # ...
+    # Atualizar animação do personagem
     def atualizar_animacao(self):
         intervalo_animacao = 100 if self.em_furia else 350
         if pygame.time.get_ticks() - self.timer_animacao > intervalo_animacao:  

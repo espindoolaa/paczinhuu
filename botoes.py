@@ -1,9 +1,13 @@
 import pygame
 import constantes as ct
 
+# Este documento contém a classe dos botões, utilizados nas diferentes telas do jogo
+
 pygame.init()
 
+# ----------------------------------------------------------- BOTÕES ---------------------------------------------------------
 class Botoes:
+    # Inicializações
     def __init__ (self, imagem, texto, coord_centro):
         self.coord_centro = pygame.Vector2(coord_centro)
         self.imagem = imagem
@@ -20,10 +24,12 @@ class Botoes:
         self.clicado = False
         self.cursor_click = False
 
+    # Mostrar botão na tela
     def desenhar_botao(self, tela, imagem, imagemrect, texto, textorect):
         tela.blit(imagem, imagemrect)
         tela.blit(texto, textorect)
 
+    # Verificar se o botão foi clicado
     def verificar_clique(self, tela):
         posicao_mouse = pygame.mouse.get_pos()
 
@@ -35,6 +41,7 @@ class Botoes:
             self.clicado = False
         return self.clicado
     
+    # Verificar se o usuário passou o cursor pelo botão
     def verificar_hoover(self, click, padrao):
      
         posicao_mouse = pygame.mouse.get_pos()
@@ -58,3 +65,4 @@ class Botoes:
                 self.cursor_click = False
                 pygame.mouse.set_cursor(padrao)
                 self.cursor_click = False
+# -----------------------------------------------------------------------------------------------------------------------------

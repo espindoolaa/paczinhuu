@@ -3,15 +3,16 @@ import sys
 import classe_italo
 import constantes
 import classe_tubaroes
-import classe_bolinha
+import classe_bolha
 import classe_peixe
 import labirinto
 import classe_baiacu
 import botoes
 from pathlib import Path
-pygame.init()
 
 # Esse documento contém a função do loop principal do jogo
+
+pygame.init()
 
 # ---------------------- CURSOR -------------------------------
 imagem_cursor = pygame.image.load(Path('imgs', 'cursor_click.png'))
@@ -21,7 +22,6 @@ cursor_superficie.blit(imagem_cursor, (0, 0))
 cursor_click = pygame.cursors.Cursor((0, 0), cursor_superficie)
 cursor_padrao = pygame.SYSTEM_CURSOR_ARROW
 # --------------------------------------------------------------
-
 
 # ------------------------------------- VITÓRIA -----------------------------------------
 def tela_vitoria():
@@ -107,7 +107,6 @@ def rodar_jogo():
     clock = pygame.time.Clock()
     running = True
     italo = classe_italo.ItaloSena(posicao_inicial_italo)
-    lista_directions = ['up', 'down', 'left', 'right']
 
     # Variáveis de contagem
     contagem_peixes = 0
@@ -121,7 +120,7 @@ def rodar_jogo():
 
     # Posicionar os coletáveis
     peixes = classe_peixe.Coletavel_peixe([(60, 75), (995, 540)])
-    bolinhas = classe_bolinha.Bolinha(71, 71, peixes, constantes.MAPA)
+    bolhas = classe_bolha.Coletavel_bolha(60, 65, peixes, constantes.MAPA)
     baiacus = classe_baiacu.Coletavel_baiacu([(987, 60), (53, 530)])
 
     # Objeto dos tubarões (dois ao total)
@@ -143,16 +142,16 @@ def rodar_jogo():
         new_position = italo.retornar_posicao()
         italo.renderizar()
 
-        tubarao1.movimentacao(italo.em_furia)
+        tubarao1.movimentacao()
         if tubarao1.checar_colisao_complayer(italo):
             tela_gameover()
         tubarao1.renderizar(screen)
         
-        bolinhas.renderizar(screen)
+        bolhas.renderizar(screen)
         peixes.renderizar(screen)
         baiacus.renderizar(screen)
 
-        bolinhas.verificar_colisao(new_position)
+        bolhas.verificar_colisao(new_position)
 
         italo_rect = pygame.Rect(italo.posicao[0], italo.posicao[1], 30, 30)
         
@@ -171,19 +170,19 @@ def rodar_jogo():
 
         # Renderizar as contagens dentro das placas
         texto_peixes = font.render(f'PEIXES: {contagem_peixes}', True, (0, 0, 0))
-        texto_bolinhas = font.render(f'BOLINHAS: {bolinhas.qtd_bolinhas}', True, (0, 0, 0))
+        texto_bolhas = font.render(f'BOLHAS: {bolhas.qtd_bolhas}', True, (0, 0, 0))
         texto_baiacus = font.render(f'BAIACUS: {contagem_baiacus}', True, (0, 0, 0))
 
         # Posicionar os textos dentro das placas
         text_rect1 = texto_peixes.get_rect(center=(placa_rect1.centerx, placa_rect1.centery))
-        text_rect2 = texto_bolinhas.get_rect(center=(placa_rect2.centerx, placa_rect2.centery))
+        text_rect2 = texto_bolhas.get_rect(center=(placa_rect2.centerx, placa_rect2.centery))
         text_rect3 = texto_baiacus.get_rect(center=(placa_rect3.centerx, placa_rect3.centery))
 
         constantes.SCREEN.blit(texto_peixes, text_rect1)
-        constantes.SCREEN.blit(texto_bolinhas, text_rect2)
+        constantes.SCREEN.blit(texto_bolhas, text_rect2)
         constantes.SCREEN.blit(texto_baiacus, text_rect3)
 
-        if classe_bolinha.Bolinha.verificar_pegou_bolinhas(bolinhas) and classe_peixe.Coletavel_peixe.verificar_pegou_peixes(peixes, contagem_peixes) and classe_baiacu.Coletavel_baiacu.verificar_pegou_baiacus(baiacus, contagem_baiacus):
+        if classe_bolha.Coletavel_bolha.verificar_pegou_bolhas(bolhas) and classe_peixe.Coletavel_peixe.verificar_pegou_peixes(peixes, contagem_peixes) and classe_baiacu.Coletavel_baiacu.verificar_pegou_baiacus(baiacus, contagem_baiacus):
             tela_vitoria()
 
         pygame.display.flip()    

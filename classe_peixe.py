@@ -11,6 +11,7 @@ import constantes
 
 # ----------------------------------------------------------------- COLETÁVEL: PEIXE -------------------------------------------------------------
 class Coletavel_peixe:
+    # Inicializações
     def __init__(self, posicoes):
         self.posicoes = posicoes
         self.x = posicoes[0]

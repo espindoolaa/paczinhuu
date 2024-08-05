@@ -34,4 +34,6 @@ peixe = pygame.image.load(Path('imgs', 'peixe.png'))
 PEIXE = pygame.transform.scale_by(peixe, 1/8)
 baiacu = pygame.image.load(Path('imgs', 'baiacu.png'))
 BAIACU = pygame.transform.scale_by(baiacu, 1/14)
+bolha = pygame.image.load(Path('imgs', 'bolha.png'))
+BOLHA = pygame.transform.scale_by(bolha, 1/30)
 # --------------------------------------------------------------

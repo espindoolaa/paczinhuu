@@ -1,24 +1,24 @@
-import pygame
 import constantes
 import math
 from classe_italo import ItaloSena
 
-# Esse documento contém a classe das bolinhas
+# Esse documento contém a classe das bolhas
 
-# Haverá 121 bolinhas no mapa
+# Haverá 121 bolhas no mapa
 
-# Para ganhar o jogo, o jogador deve coletar todas as bolinhas, além dos peixes e dos baiacus
+# Para ganhar o jogo, o jogador deve coletar todas as bolhas, além dos peixes e dos baiacus
 
 # --------------------------------------------- COLETÁVEL: BOLINHAS -------------------------------------------------
-class Bolinha(ItaloSena):        
-    def __init__(self, x, y, bolinhas_grandes, mapa):
+class Coletavel_bolha(ItaloSena):
+    # Inicializações 
+    def __init__(self, x, y, peixes, mapa):
         self.posicoes = []
         self.mapa = mapa
-        self.gerar_posicoes(x, y, bolinhas_grandes)
-        self.qtd_bolinhas = 0
+        self.gerar_posicoes(x, y, peixes)
+        self.qtd_bolhas = 0
 
-    # Posicionar as bolinhas nos corredores
-    def gerar_posicoes(self, x_inicial, y_inicial, bolinhas_grandes):
+    # Posicionar as bolhas nos corredores
+    def gerar_posicoes(self, x_inicial, y_inicial, peixes):
         def posicao_valida(x, y):
             if 0 <= y // 47 < len(self.mapa) and 0 <= x // 47 < len(self.mapa[0]):
                 mapa_y = y // 47
@@ -28,29 +28,29 @@ class Bolinha(ItaloSena):
         
         for x in range(x_inicial, 1068, 47):
             for y in range(y_inicial, 620, 47):
-                if posicao_valida(x, y) and (x, y) not in bolinhas_grandes.posicoes:
+                if posicao_valida(x, y) and (x, y) not in peixes.posicoes:
                     self.posicoes.append((x, y))
     
-    # Mostrar as bolinhas na tela
+    # Mostrar as bolhas na tela
     def renderizar(self, screen):
         for pos in self.posicoes:
-            pygame.draw.circle(screen, (255, 255, 0), pos, constantes.RAIO_BOLINHA)
+            screen.blit(constantes.BOLHA, pos)
     
-    # Verificar a colisão com a bolinha para coletá-la
+    # Verificar a colisão com a bolha para coletá-la
     def verificar_colisao(self, position):
         to_remove = []
         for pos in self.posicoes:
             distancia = math.sqrt((pos[0] - position.x) ** 2 + (pos[1] - position.y) ** 2)
-            if distancia < constantes.RAIO_BOLINHA + 19:  # Considerando que 19 é o raio do personagem
+            if distancia < constantes.RAIO_BOLINHA + 19:
                 to_remove.append(pos)
         
         for pos in to_remove:
             self.posicoes.remove(pos)
-            self.qtd_bolinhas += 1
+            self.qtd_bolhas += 1
 
-    # Verificar se pegou todas as bolinhas
-    def verificar_pegou_bolinhas(self):
-        if self.qtd_bolinhas == 121:
+    # Verificar se pegou todas as bolhas
+    def verificar_pegou_bolhas(self):
+        if self.qtd_bolhas == 121:
             return True
         return False
 # --------------------------------------------------------------------------------------------------------------------
