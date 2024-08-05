@@ -112,25 +112,25 @@ class Tubaroes():
                         self.direcao_atual = new_direction
                         self.posicao = new_position
                         break
-            else:
-                check = self.checar_nodulo()
-                if check != 0:
-                    x = check[1]
-                    possible_directions = dircoords[x]
-                    list_possible_directions = []
-                    for k in possible_directions:
-                        list_possible_directions.append(k)
-                    random.shuffle(list_possible_directions)
-                    for new_direction in list_possible_directions:
-                        new_position = self.posicao + direction_vectors[new_direction] * self.velocidade
-                        self.hit_box.topleft = (new_position.x, new_position.y)
-                        if not checar_colisao(self):
-                            self.direcao_atual = new_direction
-                            self.posicao = new_position
-                            break
+ #           else:
+  #              check = self.checar_nodulo()
+   #             if check != 0:
+    #                x = check[1]
+     #               possible_directions = dircoords[x]
+      #              list_possible_directions = []
+       #             for k in possible_directions:
+        #                list_possible_directions.append(k)
+         #           random.shuffle(list_possible_directions)
+          #          for new_direction in list_possible_directions:
+           #             new_position = self.posicao + direction_vectors[new_direction] * self.velocidade
+            #            self.hit_box.topleft = (new_position.x, new_position.y)
+             #           if not checar_colisao(self):
+              #              self.direcao_atual = new_direction
+               #             self.posicao = new_position
+                #            break
                         
-                else:
-                    self.posicao = new_position
+                #else:
+            self.posicao = new_position
     
             if self.posicao.x < 0:
                 self.posicao.x = constantes.SIZE[0]

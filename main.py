@@ -10,7 +10,9 @@ import classe_baiacu
 import botoes
 from pathlib import Path
 
-# Esse documento contém a função do loop principal do jogo
+# RODE O JOGO AQUI
+
+# Esse documento contém todas as telas utilizadas no nosso projeto, bem como a função do loop principal do jogo
 
 pygame.init()
 
@@ -23,6 +25,87 @@ cursor_click = pygame.cursors.Cursor((0, 0), cursor_superficie)
 cursor_padrao = pygame.SYSTEM_CURSOR_ARROW
 # --------------------------------------------------------------
 
+# ------------------------- MENU INICIAL --------------------------------
+def tela_menuinicial():
+    screen = pygame.display.set_mode((1075, 614))
+    imagemfundo_inicial = pygame.image.load(Path('imgs', 'menuinicial.png'))
+
+    # Botões da tela de início
+    botoes_menu = []
+    botao_jogar = botoes.Botoes(constantes.BOTAO, 'JOGAR', (543, 300))
+    botao_sair = botoes.Botoes(constantes.BOTAO, 'SAIR', (543, 370))
+    botoes_menu.append(botao_jogar)
+    botoes_menu.append(botao_sair)
+
+    # Loop da tela de início
+    while True:
+        screen.blit(imagemfundo_inicial, (0, 0))
+        pygame.display.set_caption('Paczinhuu - Menu Inicial')
+        for botao in botoes_menu:
+            botoes.Botoes.verificar_hoover(botao, cursor_click, cursor_padrao)
+
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                for botao in botoes_menu:
+                    clicou = botoes.Botoes.verificar_clique(botao, screen)
+                    if clicou == True:
+                        if botao == botao_jogar:
+                            tela_historia()
+                        if botao == botao_sair:
+                            pygame.quit()
+                            sys.exit()
+
+        pygame.display.update()
+# ------------------------------------------------------------------------
+
+# ----------------------------- HISTÓRIA DO JOGO ---------------------------------
+def tela_historia():
+    screen = pygame.display.set_mode((1075, 614))
+    imagemfundo_historia = pygame.image.load(Path('imgs', 'historia.png'))
+    cursor_padrao = pygame.SYSTEM_CURSOR_ARROW
+    pygame.mouse.set_cursor(cursor_padrao)
+    
+    # Loop da tela de história
+    while True:
+        screen.blit(imagemfundo_historia, (0, 0))
+        pygame.display.set_caption('Paczinhuu - Instruções')
+
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_SPACE:
+                    tela_instrucoes()
+
+        pygame.display.update()
+# ---------------------------------------------------------------------------------
+
+# -------------------------------- INSTRUÇÕES ---------------------------------
+def tela_instrucoes():
+    screen = pygame.display.set_mode((1075, 614))
+    imagemfundo_instrucoes = pygame.image.load(Path('imgs', 'instrucoes.png'))
+    
+    # Loop da tela de instruções
+    while True:
+        screen.blit(imagemfundo_instrucoes, (0, 0))
+        pygame.display.set_caption('Paczinhuu - Instruções')
+
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_SPACE:
+                    rodar_jogo()
+
+        pygame.display.update()
+# -----------------------------------------------------------------------------
+
 # ------------------------------------- VITÓRIA -----------------------------------------
 def tela_vitoria():
     # Inicialização
@@ -32,9 +115,9 @@ def tela_vitoria():
     # Botões da tela de vitória
     botoes_vitoria = []
     botao_reiniciar = botoes.Botoes(constantes.BOTAO, 'REINICIAR', (393, 400))
-    botao_sair = botoes.Botoes(constantes.BOTAO, 'SAIR', (693, 400))
+    botao_menu = botoes.Botoes(constantes.BOTAO, 'MENU', (693, 400))
     botoes_vitoria.append(botao_reiniciar)
-    botoes_vitoria.append(botao_sair)
+    botoes_vitoria.append(botao_menu)
     
     # Loop da tela de vitória
     while True:
@@ -53,9 +136,8 @@ def tela_vitoria():
                     if clicou == True:
                         if botao == botao_reiniciar:
                             rodar_jogo()
-                        if botao == botao_sair:
-                            pygame.quit()
-                            sys.exit()
+                        if botao == botao_menu:
+                            tela_menuinicial()
 
         pygame.display.update()
 # ---------------------------------------------------------------------------------------
@@ -68,9 +150,9 @@ def tela_gameover():
     # Botões da tela de game over
     botoes_gameover = []
     botao_reiniciar = botoes.Botoes(constantes.BOTAO, 'REINICIAR', (393, 400))
-    botao_sair = botoes.Botoes(constantes.BOTAO, 'SAIR', (693, 400))
+    botao_menu = botoes.Botoes(constantes.BOTAO, 'MENU', (693, 400))
     botoes_gameover.append(botao_reiniciar)
-    botoes_gameover.append(botao_sair)
+    botoes_gameover.append(botao_menu)
     
     # Loop da tela de game over
     while True:
@@ -89,9 +171,8 @@ def tela_gameover():
                     if clicou == True:
                         if botao == botao_reiniciar:
                             rodar_jogo()
-                        if botao == botao_sair:
-                            pygame.quit()
-                            sys.exit()
+                        if botao == botao_menu:
+                            tela_menuinicial()
 
         pygame.display.update()
 # ----------------------------------------------------------------------------
@@ -192,3 +273,5 @@ def rodar_jogo():
     sys.exit()
 # --------------------------------------------------------------------------------------------------------------------------
 
+# Aqui o jogo é rodado
+tela_menuinicial()
