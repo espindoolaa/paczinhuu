@@ -56,7 +56,7 @@ Ao longo do projeto, todos os integrantes participaram, de alguma maneira, na co
 | José Francisco (jfcn3)   | -     |
 | Marina Rodas (mrs5)   | Criação da classe dos botões, implementação do mecanismo de colisão, criação da arte das paredes e desenvolvimento das telas iniciais     |
 | Mateus Espíndola (meb)   | Criação da classe tubarões, desenvolvimento da mecânica do jogo, criação da matriz do mapa e implementação dos coletáveis das bolhas  |
-| Matheus Vieira (mbcv)   | -     |
+| Matheus Vieira (mbcv)   | Criação da classe do Ítalo, criação das placas que contam os coletáveis, desenvolvimento da lógica da classe do baiacu     |
 
 
 ## Conceitos que foram apresentados durante a disciplina e utilizados no projeto
