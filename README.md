@@ -53,7 +53,7 @@ Ao longo do projeto, todos os integrantes participaram, de alguma maneira, na co
 | Integrante | Funções específicas |
 | :---:        |     :---      | 
 | Alisson Vinicius (avap2)   | -     | 
-| José Francisco (jfcn3)   | Classe dos coletáveis, animação da personagem, ajuda no plano de jogo e no seu respectivo mapa, auxílio no projeto como um todo focado no frontend    |
+| José Francisco (jfcn3)   | Criação da classe dos coletáveis, animação da personagem, sprites, ajuda no plano de jogo e no seu respectivo mapa, auxílio no projeto como um todo focado no frontend    |
 | Marina Rodas (mrs5)   | Criação da classe dos botões, implementação do mecanismo de colisão, criação da arte das paredes e desenvolvimento das telas iniciais     |
 | Mateus Espíndola (meb)   | Criação da classe tubarões, desenvolvimento da mecânica do jogo, criação da matriz do mapa, implementação dos coletáveis das bolhas e desenvolvimento do relatório  |
 | Matheus Vieira (mbcv)   | Criação da classe do Ítalo, criação das placas que contam os coletáveis, desenvolvimento da lógica da classe do baiacu     |
