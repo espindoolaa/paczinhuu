@@ -34,8 +34,8 @@ Para a realização do projeto, utilizou-se de algumas ferramentas e bibliotecas
 
 **Ferramentas**
 - Canva: Recurso de design que foi primordial na criação de todas as sprites dos elementos.
-- DALL-E: Essa ferramenta de criação de imagens foi utilizada para a criação do plano de fundo do jogo em pixelart, trazendo a essência que nós queríamos para o cenário. 
-- VSCode: A IDE usada para o desenvolvimento do projeto.
+- DALL-E: Ferramenta de IA especializada em imagens que foi usada para a criação do plano de fundo do jogo em pixelart, trazendo a essência que nós queríamos para o cenário. 
+- VSCode: A IDE utilizada para o desenvolvimento do projeto.
 - Notion: Plataforma usada para o gerenciamento das atividades feitas ao longo do projeto.
 - Discord: Plataforma de comunicação dos integrantes durante o projeto.
 - Miro: A criação da organização do código em fluxograma.  
@@ -60,14 +60,16 @@ Ao longo do projeto, todos os integrantes participaram, de alguma maneira, na co
 
 
 ## Conceitos que foram apresentados durante a disciplina e utilizados no projeto
-
-- poo 
+Ao decorrer da estruturação lógica do jogo, todos os conceitos apresentados durante a disciplina foram imprescindíveis. Assim, todo o projeto envolve operações lógicas básicas, comandos condicionais para a realização de movimentação conforme a interação das classes e, especialmente, laços de repetição, os quais foram a essência para desempenhar um jogo. Ademais, a aprendizagem de programação orientada à objetos junta aos conceitos de listas, tuplas e dicionários foi fundamental, uma vez que possibilita a criação objetos no código e da sua manipulação, bem como os conhecimentos de modularização possibilitaram uma organização maior do projeto como um todo. 
 
 ## Desafios e aprendizados
-- ver o que fizemos ao longo das planilhas
+
+Nossos maiores desafios foram, sem dúvidas, lidar com a divisão ineficiente das tarefas do projeto, a modularização do código, a utilização da biblioteca PyGame e, em especial, a compreensão e implementação do conteúdo de orientação a objetos, visto a inexperiência da equipe nesse tipo de projeto. Ao mesmo tempo, além de não conhecer as ferramentas de programação já citadas, também não era do conhecimento da equipe o Git/GitHub, que exigiu certo esforço do grupo para entender os conceitos e, assim, sermos capazes de estruturar melhor o código tendo o conhecimento de branches. 
+Colocando em perspectiva o desenvolvimento do projeto, ficou muito claro que a nossa delegação de funções inicial, subdividida em classes para cada um integrante e sem reuniões periódicas, seria uma estratégia que não funcionaria e, provavelmente, exigiria muito esforço do grupo para juntar todo o trabalho posteriormente e garantir a coesão adequada. Tendo em vista tais dificuldades, redefinimos nossas estratégias de organização, e o projeto começou a fluir muito mais quando iniciamos a modularizar os códigos e a realizar reuniões diárias até a sua finalização. Assim, embora alguns empecilhos por falta de conhecimento (técnicos ou não) nosso tenham aparecido ao longo do nosso desenvolvimento, todos tiveram disposição e curiosidade para aprender, e solucionar os problemas juntos.
+Por fim, é imprescindível dizer que, apesar de todo o estresse de bugs que surgiam 
 
 
-## Link para a nossa apresentação
+## [Link para a nossa apresentação]()
 
 ## Galeria do jogo
 
