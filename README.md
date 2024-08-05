@@ -10,9 +10,9 @@
 
 ## Sobre o jogo
   
-O PACZINHHU tem por inspiração o jogo Pac-Man, especialmente em sua mecânica, mas traz como elementos principais algumas referências da cidade do Recife. Assim, tentando trazer as inspirações recifenses para o projeto, o "come-come" dá lugar para o famoso humorista local, Ítalo Sena, e os famosos fantasminhas (Pinky, Inky, Blinky e Clyde) se transformam nos protagonistas dos mares de Recife: os tutubas 🦈.
+O **PACZINHUU** tem por inspiração o jogo _Pac-Man_, especialmente em sua mecânica, mas traz como elementos principais algumas referências da cidade do Recife. Assim, tentando trazer as inspirações recifenses para o projeto, o "come-come" dá lugar para o famoso humorista local, Ítalo Sena, e os famosos fantasminhas (Pinky, Inky, Blinky e Clyde) se transformam nos protagonistas dos mares de Recife: os tutubas 🦈.
 
-Quanto à mecânica do jogo e aos seus elementos, há uma subdivisão em dois grupos, os quais se tratam dos objetos coletáveis e não coletáveis. Para uma melhor visualização deles, tomemos como referência de análise a imagem a seguir: 
+No que tange a mecânica do jogo e aos seus elementos, há uma subdivisão em dois grupos, os quais se tratam dos objetos coletáveis e não coletáveis. Para uma melhor visualização deles, tomemos como referência de análise a imagem a seguir: 
 
 - INSERIR IMAGEM DO JOGO - 
 
@@ -65,7 +65,7 @@ Ao decorrer da estruturação lógica do jogo, todos os conceitos apresentados d
 ## Desafios e aprendizados
 
 Nossos maiores desafios foram, sem dúvidas, lidar com a divisão ineficiente das tarefas do projeto, a modularização do código, a utilização da biblioteca PyGame e, em especial, a compreensão e implementação do conteúdo de orientação a objetos, visto a inexperiência da equipe nesse tipo de projeto. Ao mesmo tempo, além de não conhecer as ferramentas de programação já citadas, também não era do conhecimento da equipe o Git/GitHub, que exigiu certo esforço do grupo para entender os conceitos e, assim, sermos capazes de estruturar melhor o código tendo o conhecimento de branches. 
-Colocando em perspectiva o desenvolvimento do projeto, ficou muito claro que a nossa delegação de funções inicial, subdividida em classes para cada um integrante e sem reuniões periódicas, seria uma estratégia que não funcionaria e, provavelmente, exigiria muito esforço do grupo para juntar todo o trabalho posteriormente e garantir a coesão adequada. Tendo em vista tais dificuldades, redefinimos nossas estratégias de organização, e o projeto começou a fluir muito mais quando iniciamos a modularizar os códigos e a realizar reuniões diárias até a sua finalização. Assim, embora alguns empecilhos por falta de conhecimento (técnicos ou não) nosso tenham aparecido ao longo do nosso desenvolvimento, todos tiveram disposição e curiosidade para aprender, e solucionar os problemas juntos.
+Ademais, colocando em perspectiva o desenvolvimento do projeto, ficou muito claro que a nossa delegação de funções inicial, subdividida em classes para cada um integrante e sem reuniões periódicas, seria uma estratégia que não funcionaria e, provavelmente, exigiria muito esforço do grupo para juntar todo o trabalho posteriormente e garantir a coesão adequada. Tendo em vista tais dificuldades, redefinimos nossas estratégias de organização, e o projeto começou a fluir muito mais quando iniciamos a modularizar os códigos e a realizar reuniões diárias até a sua finalização. Desse modo, embora alguns empecilhos por falta de conhecimento (técnicos ou não) nosso tenham aparecido ao longo do nosso desenvolvimento, todos tiveram disposição e curiosidade para aprender e para solucionar os problemas juntos.
 Por fim, é imprescindível dizer que, apesar de todo o estresse de bugs que surgiam 
 
 
