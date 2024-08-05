@@ -161,4 +161,11 @@ class Tubaroes():
     def checar_colisao_complayer(self, italo):
         offset = (int(italo.posicao.x - self.posicao[0]), int(italo.posicao.y - self.posicao[1]))
         return self.get_mask().overlap(italo.get_mask(), offset) is not None
+    
+    def resetar_posicao(self):
+        self.posicao = pygame.Vector2(self.posicaosaida)
+        self.hit_box.topleft = self.posicao
+        self.nagaiola = True
+        self.saindogaiola = False
+        self.direcao_atual = random.choice(['U', 'D', 'L', 'R'])
 # --------------------------------------------------------------------------------------------------------------------------------

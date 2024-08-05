@@ -224,8 +224,11 @@ def rodar_jogo():
         italo.renderizar()
 
         tubarao1.movimentacao()
-        if tubarao1.checar_colisao_complayer(italo):
+        if tubarao1.checar_colisao_complayer(italo) and not italo.em_furia:
             tela_gameover()
+        elif tubarao1.checar_colisao_complayer(italo) and italo.em_furia:
+            tubarao1.resetar_posicao()
+            
         tubarao1.renderizar(screen)
         
         bolhas.renderizar(screen)
