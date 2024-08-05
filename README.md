@@ -21,7 +21,7 @@ Coletáveis
 - **Baiacu:** Embora não tão comuns no litoral de Recife, por algumas loucuras que acompanham as mudanças climáticas, eles vieram parar em Pernambuco! Esse coletável, além de conferir um aumento na pontuação no contador de baiacus, também conferem a Ítalo o estado de _**fúria**_. Quando Ítalo está em _**fúria**_, ele adquire temporariamente habilidades de um exímio caçador de tubarões, tornando os tutubas apenas peixinhos indefesos. Nessa condição, Ítalo tem sua velocidade aumentada (de x pixels/s para y pixels/s) e é capaz de matar os tubarões, enquanto os tubarões que fogem têm sua velocidade diminuída. Quando estes são mortos nessa fase, voltam para a região de início, esperando alguns segundos para retornarem ao jogo.
 - **Bolhas do mar:** Juntam-se com os dois peixes e os dois baiacus para ocupar todo o mapa e são convertidos numa pontuação, quando coletados, no contador de bolhas.
 
-Não coletáveis
+**Não coletáveis**
 - **Ítalo Sena:** Personagem principal e controlável, que será utilizado pelo player para atingir o objetivo de PACZINHUU.
 - **Tubarões**: Dois deles serão gerados no mapa com o objetivo de atrapalhar Ítalo de completar sua meta principal. Em caso de colisão com o Ítalo sem estar em fúria, acaba com o jogo do personagem principal.
 - **Boias:** Para criar uma espécie de labirinto na fase e delimitar o mapa, foram utilizadas boias de praia. 
@@ -32,7 +32,7 @@ Não coletáveis
 ## Ferramentas, Frameworks e Bibliotecas
 Para a realização do projeto, utilizou-se de algumas ferramentas e bibliotecas que satisfazessem as necessidades para a criação de um jogo em 2D, com elementos em pixelart. 
 
-
+**Ferramentas**
 - Canva: Recurso de design que foi primordial na criação de todas as sprites dos elementos.
 - DALL-E: Essa ferramenta de criação de imagens foi utilizada para a criação do plano de fundo do jogo em pixelart, trazendo a essência que nós queríamos para o cenário. 
 - VSCode: A IDE usada para o desenvolvimento do projeto.
@@ -40,12 +40,12 @@ Para a realização do projeto, utilizou-se de algumas ferramentas e bibliotecas
 - Discord: Plataforma de comunicação dos integrantes durante o projeto.
 - Miro: A criação da organização do código em fluxograma.  
 
-Bibliotecas
+**Bibliotecas**
 
-Pygame: Essa biblioteca importa módulos Python projetados para o desenvolvimento de jogos, tal como funcionalidades para controle de eventos, manipulação de sons e criação de gráficos, as quais facilitam o processo de criação de um jogo 2D.
-Math: Dessa biblioteca foi implementada a função **sqrt** no código com o intuito de calcular a distância entre duas instâncias de objetos e, assim,,determinar se eles colidiram ou não. 
-Sys: A biblioteca sys foi implementada com o intuito de encerrar o programa corretamente, especificamente com a chamada de sys.exit().
-Pathlib: Para uma melhor organização do projeto, separou-se todo código em vários arquivos ".py". Como consequência, para simplificar a navegação desses arquivos, foi implementada a função **Path** da biblioteca. 
+- Pygame: Essa biblioteca importa módulos Python projetados para o desenvolvimento de jogos, tal como funcionalidades para controle de eventos, manipulação de sons e criação de gráficos, - as quais facilitam o processo de criação de um jogo 2D.
+- Math: Dessa biblioteca foi implementada a função **sqrt** no código com o intuito de calcular a distância entre duas instâncias de objetos e, assim, determinar se eles colidiram ou não. 
+- Sys: A biblioteca sys foi implementada com o intuito de encerrar o programa corretamente, especificamente com a chamada de sys.exit().
+- Pathlib: Para uma melhor organização do projeto, separou-se todo código em vários arquivos ".py". Como consequência, para simplificar a navegação desses arquivos, foi implementada a função **Path** da biblioteca. 
 
 ## Estrutura da equipe
 Ao longo do projeto, todos os integrantes participaram, de alguma maneira, na concepção do jogo. Em relação aos papeis, todos tiveram suas funções específicas, mas também foram proativos em se ajudarem.
@@ -53,9 +53,9 @@ Ao longo do projeto, todos os integrantes participaram, de alguma maneira, na co
 | Integrante | Funções específicas |
 | :---:        |     :---      | 
 | Alisson Vinicius (avap2)   | -     | 
-| José Francisco (jfcn3)   | -     |
+| José Francisco (jfcn3)   | Classe dos coletáveis, animação da personagem, ajuda no plano de jogo e no seu respectivo mapa, auxílio no projeto como um todo focado no frontend    |
 | Marina Rodas (mrs5)   | Criação da classe dos botões, implementação do mecanismo de colisão, criação da arte das paredes e desenvolvimento das telas iniciais     |
-| Mateus Espíndola (meb)   | Criação da classe tubarões, desenvolvimento da mecânica do jogo, criação da matriz do mapa e implementação dos coletáveis das bolhas  |
+| Mateus Espíndola (meb)   | Criação da classe tubarões, desenvolvimento da mecânica do jogo, criação da matriz do mapa, implementação dos coletáveis das bolhas e desenvolvimento do relatório  |
 | Matheus Vieira (mbcv)   | Criação da classe do Ítalo, criação das placas que contam os coletáveis, desenvolvimento da lógica da classe do baiacu     |
 
 
