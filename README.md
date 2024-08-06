@@ -29,7 +29,8 @@ Coletáveis
 **Informes gerais**
 - No start do jogo, o primeiro dos tubarões será liberado. Após alguns segundos, o segundo tubarão é liberado e a dificuldade do jogo aumenta. 
 - Ítalo Sena tem uma única vida para completar o desafio. Caso seja atingido pelo tubarão sem fúria, a tela de game over é chamada.
-- Ítalo tem 1min e 40 segundos para finalizar a fase.
+- Ítalo tem 1min e 40 segundos para finalizar a fase. Caso não cumpra nesse tempo, a tela de game over é chamada.
+- Caso o Ítalo colete todos as bolhas, peixes e baiacus, a tela de vitória é chamada.
 
 ## Organização do código 
 Para elucidar melhor sobre a organização utilizada pelo grupo, segue a imagem do Spider Diagram criado. Pelo diagrama é possível ver a interação simultânea entre as diferentes classes que ocorre dentro do nosso código. 
