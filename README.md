@@ -92,7 +92,7 @@ Por fim, é imprescindível dizer que, embora todo o estresse dos bugs que surgi
 
 Esperamos que se divirtam com o PACZINHUU! :)
 
-## [Link para a nossa apresentação]()
+## [Link para a nossa apresentação](https://www.canva.com/design/DAGNBVoJB2U/5lRxb2jQtx6mlHXrcUdKSw/edit?utm_content=DAGNBVoJB2U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## Galeria do jogo
 - Tela de início
