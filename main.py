@@ -212,24 +212,20 @@ def tela_gameover_tempo():
 
         pygame.display.update()
 
-# ---------------------------- TEMPO CONTADOR ----------------------------------
-def atualizar_tempo(tempo_inicio):
-    tempo_decorrido = pygame.time.get_ticks() - tempo_inicio
-    tempo_restante = max(0, 100000 - tempo_decorrido)
-    minutos = tempo_restante // 60000
-    segundos = (tempo_restante % 60000) // 1000
-    tempo_texto = f"{minutos:02}:{segundos:02}"
-    return tempo_texto
 
 # ----------------------------------------------------------------------------
 
 # ------------------------------------------- LOOP DO JOGO --------------------------------------------
 def rodar_jogo():
+
+    # Tempo total do jogo em segundos
+    TEMPO_TOTAL = 100
+
     # Tempo contando
     tempo = time.time()
 
     # Contador de tempo
-    contador_tempo = pygame.time.get_ticks() / 1000
+    contador_tempo = pygame.time.get_ticks() 
     
     # Inicialização
     screen = pygame.display.set_mode(constantes.SIZE)
@@ -262,13 +258,18 @@ def rodar_jogo():
     tubarao_adicionado = False
     tempo_inicio = time.time()
 
-    
+    tempo_inicial_printar = 100
+
     # Loop principal do jogo
     while running:
     
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+
+        mins_total = tempo_inicial_printar / 60
+        segs_total =  tempo_inicial_printar -(60*(mins_total))
+        tempo_inicial_printar -= 1
 
         screen.blit(constantes.PRAIA, (0, 0))
         screen.blit(labirinto.labirinto_imagem, (0,0))
@@ -282,8 +283,6 @@ def rodar_jogo():
         tempo_atual = time.time()
         tempo_passado = tempo_atual - tempo_inicio
 
-        # tempo contador
-        tempo_texto = atualizar_tempo(tempo_inicio)
         
         if tempo_passado >= 18 and not tubarao_adicionado:
             tubaroes.append(classe_tubaroes.Tubaroes((520, 285)))
@@ -330,7 +329,8 @@ def rodar_jogo():
         texto_peixes = font.render(f'PEIXES: {contagem_peixes}', True, (0, 0, 0))
         texto_bolhas = font.render(f'BOLHAS: {bolhas.qtd_bolhas}', True, (0, 0, 0))
         texto_baiacus = font.render(f'BAIACUS: {contagem_baiacus}', True, (0, 0, 0))
-        texto_tempo = font.render(f'TEMPO: {tempo_texto}', True, (0, 0, 0))
+        printar_tempo = 100 - (tempo_limite_atual - tempo_inicio)
+        texto_tempo = font.render(f'TEMPO: {printar_tempo:.2f}', True, (0, 0, 0))
 
         # Posicionar os textos dentro das placas
         text_rect1 = texto_peixes.get_rect(center=(placa_rect1.centerx, placa_rect1.centery))
