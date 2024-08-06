@@ -8,6 +8,7 @@ import classe_peixe
 import labirinto
 import classe_baiacu
 import botoes
+import time
 from pathlib import Path
 
 # RODE O JOGO AQUI
@@ -142,7 +143,7 @@ def tela_vitoria():
         pygame.display.update()
 # ---------------------------------------------------------------------------------------
 
-# ------------------------------ GAME OVER -----------------------------------
+# ------------------------------ GAME OVER PADRÃO -----------------------------------
 def tela_gameover():
     screen = pygame.display.set_mode((1075, 614))
     imagemfundo_gameover = pygame.image.load(Path('imgs', 'gameover.png'))
@@ -177,14 +178,65 @@ def tela_gameover():
         pygame.display.update()
 # ----------------------------------------------------------------------------
 
+# ------------------------------ GAME OVER TEMPO -----------------------------------
+def tela_gameover_tempo():
+    screen = pygame.display.set_mode((1075, 614))
+    imagemfundo_gameover = pygame.image.load(Path('imgs', 'gameovert.png'))
+
+    # Botões da tela de game over
+    botoes_gameover = []
+    botao_reiniciar = botoes.Botoes(constantes.BOTAO, 'REINICIAR', (393, 400))
+    botao_menu = botoes.Botoes(constantes.BOTAO, 'MENU', (693, 400))
+    botoes_gameover.append(botao_reiniciar)
+    botoes_gameover.append(botao_menu)
+    
+    # Loop da tela de game over
+    while True:
+        screen.blit(imagemfundo_gameover, (0, 0))
+        pygame.display.set_caption('Paczinhuu - GAME OVER!')
+        for botao in botoes_gameover:
+            botoes.Botoes.verificar_hoover(botao, cursor_click, cursor_padrao)
+
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if evento.type == pygame.MOUSEBUTTONDOWN:
+                for botao in botoes_gameover:
+                    clicou = botoes.Botoes.verificar_clique(botao, constantes.SCREEN)
+                    if clicou == True:
+                        if botao == botao_reiniciar:
+                            rodar_jogo()
+                        if botao == botao_menu:
+                            tela_menuinicial()
+
+        pygame.display.update()
+
+# ---------------------------- TEMPO CONTADOR ----------------------------------
+def atualizar_tempo(tempo_inicio):
+    tempo_decorrido = pygame.time.get_ticks() - tempo_inicio
+    tempo_restante = max(0, 100000 - tempo_decorrido)
+    minutos = tempo_restante // 60000
+    segundos = (tempo_restante % 60000) // 1000
+    tempo_texto = f"{minutos:02}:{segundos:02}"
+    return tempo_texto
+
+# ----------------------------------------------------------------------------
+
 # ------------------------------------------- LOOP DO JOGO --------------------------------------------
 def rodar_jogo():
+    # Tempo contando
+    tempo = time.time()
+
+    # Contador de tempo
+    contador_tempo = pygame.time.get_ticks() / 1000
+    
     # Inicialização
     screen = pygame.display.set_mode(constantes.SIZE)
     pygame.display.set_caption('Paczinhuu')
     font = pygame.font.Font('fontegamer.ttf', 25)
     posicao_inicial_italo = (517, 380)
-    posicao_inicial_tubarao1 = (470, 285)
+    posicao_inicial_tubarao1 = (520, 285)
     clock = pygame.time.Clock()
     running = True
     italo = classe_italo.ItaloSena(posicao_inicial_italo)
@@ -198,6 +250,7 @@ def rodar_jogo():
     placa_rect1 = placa_image.get_rect(topleft=(10, 10))
     placa_rect2 = placa_image.get_rect(topleft=(placa_rect1.right + 10, 10))
     placa_rect3 = placa_image.get_rect(topleft=(placa_rect2.right + 10, 10))
+    placa_rect4 = placa_image.get_rect(topleft=(placa_rect3.right + 10, 10))
 
     # Posicionar os coletáveis
     peixes = classe_peixe.Coletavel_peixe([(60, 75), (995, 540)])
@@ -205,7 +258,10 @@ def rodar_jogo():
     baiacus = classe_baiacu.Coletavel_baiacu([(987, 60), (53, 530)])
 
     # Objeto dos tubarões (dois ao total)
-    tubarao1 = classe_tubaroes.Tubaroes(posicao_inicial_tubarao1)
+    tubaroes = [classe_tubaroes.Tubaroes(posicao_inicial_tubarao1)]
+    tubarao_adicionado = False
+    tempo_inicio = time.time()
+
     
     # Loop principal do jogo
     while running:
@@ -223,13 +279,26 @@ def rodar_jogo():
         new_position = italo.retornar_posicao()
         italo.renderizar()
 
-        tubarao1.movimentacao()
-        if tubarao1.checar_colisao_complayer(italo) and not italo.em_furia:
-            tela_gameover()
-        elif tubarao1.checar_colisao_complayer(italo) and italo.em_furia:
-            tubarao1.resetar_posicao()
+        tempo_atual = time.time()
+        tempo_passado = tempo_atual - tempo_inicio
+
+        # tempo contador
+        tempo_texto = atualizar_tempo(tempo_inicio)
+        
+        if tempo_passado >= 18 and not tubarao_adicionado:
+            tubaroes.append(classe_tubaroes.Tubaroes((520, 285)))
+            tubarao_adicionado = True
+
+        for tubarao in tubaroes:
+            tubarao.movimentacao()
+            if tubarao.checar_colisao_complayer(italo) and not italo.em_furia:
+                tela_gameover()
+            elif tubarao.checar_colisao_complayer(italo) and italo.em_furia:
+                tubarao.resetar_posicao()
+            tubarao.renderizar(screen)
             
-        tubarao1.renderizar(screen)
+            if tempo >= 18000:
+                tubarao.renderizar(screen)
         
         bolhas.renderizar(screen)
         peixes.renderizar(screen)
@@ -251,23 +320,35 @@ def rodar_jogo():
         constantes.SCREEN.blit(placa_image, placa_rect1)
         constantes.SCREEN.blit(placa_image, placa_rect2)
         constantes.SCREEN.blit(placa_image, placa_rect3)
+        constantes.SCREEN.blit(placa_image, placa_rect4)
+
+        tempo_limite_atual = time.time()
+
+        contador_tempo += pygame.time.get_ticks()
 
         # Renderizar as contagens dentro das placas
         texto_peixes = font.render(f'PEIXES: {contagem_peixes}', True, (0, 0, 0))
         texto_bolhas = font.render(f'BOLHAS: {bolhas.qtd_bolhas}', True, (0, 0, 0))
         texto_baiacus = font.render(f'BAIACUS: {contagem_baiacus}', True, (0, 0, 0))
+        texto_tempo = font.render(f'TEMPO: {tempo_texto}', True, (0, 0, 0))
 
         # Posicionar os textos dentro das placas
         text_rect1 = texto_peixes.get_rect(center=(placa_rect1.centerx, placa_rect1.centery))
         text_rect2 = texto_bolhas.get_rect(center=(placa_rect2.centerx, placa_rect2.centery))
         text_rect3 = texto_baiacus.get_rect(center=(placa_rect3.centerx, placa_rect3.centery))
+        text_rect4 = texto_tempo.get_rect(center=(placa_rect4.centerx, placa_rect4.centery))
 
         constantes.SCREEN.blit(texto_peixes, text_rect1)
         constantes.SCREEN.blit(texto_bolhas, text_rect2)
         constantes.SCREEN.blit(texto_baiacus, text_rect3)
+        constantes.SCREEN.blit(texto_tempo, text_rect4)
 
         if classe_bolha.Coletavel_bolha.verificar_pegou_bolhas(bolhas) and classe_peixe.Coletavel_peixe.verificar_pegou_peixes(peixes, contagem_peixes) and classe_baiacu.Coletavel_baiacu.verificar_pegou_baiacus(baiacus, contagem_baiacus):
             tela_vitoria()
+        
+
+        if tempo_limite_atual - tempo_inicio > 100:
+            tela_gameover_tempo()
 
         pygame.display.flip()    
         clock.tick(60)

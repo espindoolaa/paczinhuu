@@ -41,7 +41,7 @@ class Coletavel_bolha(ItaloSena):
         to_remove = []
         for pos in self.posicoes:
             distancia = math.sqrt((pos[0] - position.x) ** 2 + (pos[1] - position.y) ** 2)
-            if distancia < constantes.RAIO_BOLINHA + 19:
+            if distancia < constantes.RAIO_BOLHA + 19:
                 to_remove.append(pos)
         
         for pos in to_remove:
