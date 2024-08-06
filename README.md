@@ -18,13 +18,19 @@ Quanto à mecânica do jogo e aos seus elementos, subdividiu-se em dois grupos, 
 
 Coletáveis
 - **Peixe:** Ao serem coletados, além de conferir um aumento na pontuação no contador de peixes, também conferem a Ítalo um aumento de velocidade (de x pixels/s para y pixels/s).
-- **Baiacu:** Embora não tão comuns no litoral de Recife, por algumas loucuras que acompanham as mudanças climáticas, eles vieram parar em Pernambuco! Esse coletável, além de conferir um aumento na pontuação no contador de baiacus, também conferem a Ítalo o estado de _**fúria**_. Quando Ítalo está em _**fúria**_, ele adquire temporariamente habilidades de um exímio caçador de tubarões, tornando os tutubas apenas peixinhos indefesos. Nessa condição, Ítalo tem sua velocidade aumentada (de x pixels/s para y pixels/s) e é capaz de matar os tubarões, enquanto os tubarões que fogem têm sua velocidade diminuída. Quando estes são mortos nessa fase, voltam para a região de início, esperando alguns segundos para retornarem ao jogo.
+- **Baiacu:** Embora não tão comuns no litoral de Recife, por algumas loucuras que acompanham as mudanças climáticas, eles vieram parar em Pernambuco! Esse coletável, além de conferir um aumento na pontuação no contador de baiacus, também conferem a Ítalo o estado de _**fúria**_. Quando Ítalo está em _**fúria**_, ele adquire temporariamente habilidades de um exímio caçador de tubarões, tornando os tutubas apenas peixinhos indefesos. Nessa condição, Ítalo tem sua velocidade aumentada (de x pixels/s para y pixels/s) e é capaz de matar os tubarões. Quando esses são mortos na fase, voltam para a região de início e reiniciam sua rota.
 - **Bolhas do mar:** Juntam-se com os dois peixes e os dois baiacus para ocupar todo o mapa e são convertidos numa pontuação, quando coletados, no contador de bolhas.
 
 **Não coletáveis**
 - **Ítalo Sena:** Personagem principal e controlável, que será utilizado pelo player para atingir o objetivo de PACZINHUU.
 - **Tubarões**: Dois deles serão gerados no mapa com o objetivo de atrapalhar Ítalo de completar sua meta principal. Em caso de colisão com o Ítalo sem estar em fúria, acaba com o jogo do personagem principal.
-- **Boias:** Para criar uma espécie de labirinto na fase e delimitar o mapa, foram utilizadas boias de praia. 
+- **Boias:** Para criar uma espécie de labirinto na fase e delimitar o mapa, foram utilizadas boias de praia.
+
+**Informes gerais**
+- No start do jogo, o primeiro dos tubarões será liberado. Após alguns segundos, o segundo tubarão é liberado e a dificuldade do jogo aumenta. 
+- Ítalo Sena tem uma única vida para completar o desafio. Caso seja atingido pelo tubarão sem fúria, a tela de game over é chamada.
+- Ítalo tem 1min e 40 segundos para finalizar a fase. Caso não cumpra nesse tempo, a tela de game over é chamada.
+- Caso o Ítalo colete todos as bolhas, peixes e baiacus, a tela de vitória é chamada.
 
 ## Organização do código 
 Para elucidar melhor sobre a organização utilizada pelo grupo, segue a imagem do Spider Diagram criado. Pelo diagrama é possível ver a interação simultânea entre as diferentes classes que ocorre dentro do nosso código. 
@@ -38,6 +44,7 @@ Para elucidar melhor sobre a organização utilizada pelo grupo, segue a imagem 
 - **classe_italo.py:** Classe responsável pela criação do objeto Ítalo Sena.
 - **classe_peixe.py:** Classe responsável pela criação do objeto Ítalo Sena.
 - **classe_tubaroes.py:** Classe responsável pela criação do objeto Ítalo Sena.
+- **classe_tempo.py:** Classe responsável por criar o timer para finalização do jogo. 
 - **constantes.py:** Arquivo que contém variáveis constantes que foram usadas no projeto, como o tamanho de tela, velocidade dos personagens, etc.  
 - **labirinto.py:** Gera uma máscara de colisão na imagem das boias, evitando que o Ítalo e os tubarões saiam das delimitações.
 
@@ -57,14 +64,15 @@ Para a realização do projeto, utilizou-se de algumas ferramentas e bibliotecas
 - **Pygame:** Essa biblioteca importa módulos Python projetados para o desenvolvimento de jogos, tal como funcionalidades para controle de eventos, manipulação de sons e criação de gráficos, - as quais facilitam o processo de criação de um jogo 2D.
 - **Math:** Dessa biblioteca foi implementada a função **sqrt** no código com o intuito de calcular a distância entre duas instâncias de objetos e, assim, determinar se eles colidiram ou não. 
 - **Sys:** A biblioteca sys foi implementada com o intuito de encerrar o programa corretamente, especificamente com a chamada de sys.exit().
-- **Path:** Para uma melhor organização do projeto, separou-se todo código em vários arquivos ".py". Como consequência, para simplificar a navegação desses arquivos, foi implementada a função **Pathlib** da biblioteca. 
+- **Path:** Para uma melhor organização do projeto, separou-se todo código em vários arquivos ".py". Como consequência, para simplificar a navegação desses arquivos, foi implementada a função **Pathlib** da biblioteca.
+- **Time:** A biblioteca foi usada para implementar o cronômetro de finalização da fase.
 
 ## Estrutura da equipe
 Ao longo do projeto, todos os integrantes participaram, de alguma maneira, na concepção do jogo. Em relação aos papeis, todos tiveram suas funções específicas, mas também foram proativos em se ajudarem.
 
 | Integrante | Funções específicas |
 | :---:        |     :---      | 
-| Alisson Vinicius (avap2)   | -     | 
+| Alisson Vinicius (avap2)   | Ajustes na movimentação do player, sistema de colisão do player com as paredes e estruturação do mapa     | 
 | José Francisco (jfcn3)   | Classe dos coletáveis, animação da personagem, ajuda no plano de jogo e no seu respectivo mapa, auxílio no projeto como um todo focado no frontend    |
 | Marina Rodas (mrs5)   | Criação da classe dos botões, implementação do mecanismo de colisão, criação da arte das paredes e desenvolvimento das telas iniciais     |
 | Mateus Espíndola (meb)   | Criação da classe tubarões, desenvolvimento da mecânica do jogo, criação da matriz do mapa, implementação dos coletáveis das bolhas e desenvolvimento do relatório  |
