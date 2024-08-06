@@ -111,9 +111,13 @@ Esperamos que se divirtam com o PACZINHUU! :)
 
 ![tela_emjogo](https://github.com/user-attachments/assets/ff5c8098-6124-47e0-bc13-fa0e9690b8f4)
 
-- Game Over
+- Game Over (Tempo)
 
 ![tela_gameover](https://github.com/user-attachments/assets/682f58a8-ff26-4529-bf67-11d71c57ce0a)
+
+- Game over (Tubarões)
+
+![game over](https://github.com/user-attachments/assets/44e64549-1ad2-49d3-b9bb-685a7b5db467)
 
 
 
