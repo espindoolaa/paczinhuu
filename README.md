@@ -1,5 +1,6 @@
 # PACZINHUU
-* IMAGEM COMO CAPA *
+
+![tela_inicio](https://github.com/user-attachments/assets/15db276c-9606-4d9c-9c91-895f855a289f)
 
 ## Desenvolvedores do projeto
 - Alisson Vinicius (avap2)
@@ -14,7 +15,7 @@ O PACZINHUU tem por inspiração o jogo Pac-Man, especialmente em sua mecânica,
 
 Quanto à mecânica do jogo e aos seus elementos, subdividiu-se em dois grupos, os quais se tratam dos objetos coletáveis e não coletáveis. Para uma melhor visualização deles, tomemos como referência de análise a imagem a seguir: 
 
-- INSERIR IMAGEM DO JOGO - 
+![tela_emjogo](https://github.com/user-attachments/assets/82ca048f-c5f6-438c-b5ab-dbb163f9f6a8)
 
 Coletáveis
 - **Peixe:** Ao serem coletados, além de conferir um aumento na pontuação no contador de peixes, também conferem a Ítalo um aumento de velocidade (de x pixels/s para y pixels/s).
@@ -94,6 +95,29 @@ Esperamos que se divirtam com o PACZINHUU! :)
 ## [Link para a nossa apresentação]()
 
 ## Galeria do jogo
+- Tela de início
+  
+![tela_inicio](https://github.com/user-attachments/assets/bce319f7-0966-4e13-a2ff-2184271c6864)
+
+- Tela da história
+
+![tela_história](https://github.com/user-attachments/assets/1cd183ae-8032-4980-b0c5-eaef57805c7b)
+
+- Tela das instruções
+
+![tela_instruções](https://github.com/user-attachments/assets/ac37d4aa-babc-4cd9-8259-c765abf94fa0)
+
+- Em jogo
+
+![tela_emjogo](https://github.com/user-attachments/assets/ff5c8098-6124-47e0-bc13-fa0e9690b8f4)
+
+- Game Over
+
+![tela_gameover](https://github.com/user-attachments/assets/682f58a8-ff26-4529-bf67-11d71c57ce0a)
+
+
+
+
 
 
 
