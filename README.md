@@ -44,6 +44,7 @@ Para elucidar melhor sobre a organização utilizada pelo grupo, segue a imagem 
 - **classe_italo.py:** Classe responsável pela criação do objeto Ítalo Sena.
 - **classe_peixe.py:** Classe responsável pela criação do objeto Ítalo Sena.
 - **classe_tubaroes.py:** Classe responsável pela criação do objeto Ítalo Sena.
+- **classe_tempo.py:** Classe responsável por criar o timer para finalização do jogo. 
 - **constantes.py:** Arquivo que contém variáveis constantes que foram usadas no projeto, como o tamanho de tela, velocidade dos personagens, etc.  
 - **labirinto.py:** Gera uma máscara de colisão na imagem das boias, evitando que o Ítalo e os tubarões saiam das delimitações.
 
