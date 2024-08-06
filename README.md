@@ -18,13 +18,18 @@ Quanto à mecânica do jogo e aos seus elementos, subdividiu-se em dois grupos, 
 
 Coletáveis
 - **Peixe:** Ao serem coletados, além de conferir um aumento na pontuação no contador de peixes, também conferem a Ítalo um aumento de velocidade (de x pixels/s para y pixels/s).
-- **Baiacu:** Embora não tão comuns no litoral de Recife, por algumas loucuras que acompanham as mudanças climáticas, eles vieram parar em Pernambuco! Esse coletável, além de conferir um aumento na pontuação no contador de baiacus, também conferem a Ítalo o estado de _**fúria**_. Quando Ítalo está em _**fúria**_, ele adquire temporariamente habilidades de um exímio caçador de tubarões, tornando os tutubas apenas peixinhos indefesos. Nessa condição, Ítalo tem sua velocidade aumentada (de x pixels/s para y pixels/s) e é capaz de matar os tubarões, enquanto os tubarões que fogem têm sua velocidade diminuída. Quando estes são mortos nessa fase, voltam para a região de início, esperando alguns segundos para retornarem ao jogo.
+- **Baiacu:** Embora não tão comuns no litoral de Recife, por algumas loucuras que acompanham as mudanças climáticas, eles vieram parar em Pernambuco! Esse coletável, além de conferir um aumento na pontuação no contador de baiacus, também conferem a Ítalo o estado de _**fúria**_. Quando Ítalo está em _**fúria**_, ele adquire temporariamente habilidades de um exímio caçador de tubarões, tornando os tutubas apenas peixinhos indefesos. Nessa condição, Ítalo tem sua velocidade aumentada (de x pixels/s para y pixels/s) e é capaz de matar os tubarões, enquanto os tubarões que fogem têm sua velocidade diminuída. Quando estes são mortos nessa fase, voltam para a região de início e reiniciam sua rota.
 - **Bolhas do mar:** Juntam-se com os dois peixes e os dois baiacus para ocupar todo o mapa e são convertidos numa pontuação, quando coletados, no contador de bolhas.
 
 **Não coletáveis**
 - **Ítalo Sena:** Personagem principal e controlável, que será utilizado pelo player para atingir o objetivo de PACZINHUU.
 - **Tubarões**: Dois deles serão gerados no mapa com o objetivo de atrapalhar Ítalo de completar sua meta principal. Em caso de colisão com o Ítalo sem estar em fúria, acaba com o jogo do personagem principal.
-- **Boias:** Para criar uma espécie de labirinto na fase e delimitar o mapa, foram utilizadas boias de praia. 
+- **Boias:** Para criar uma espécie de labirinto na fase e delimitar o mapa, foram utilizadas boias de praia.
+
+**Informes gerais**
+- No start do jogo, o primeiro dos tubarões será liberado. Após alguns segundos, o segundo tubarão é liberado e a dificuldade do jogo aumenta. 
+- Ítalo Sena tem uma única vida para completar o desafio. Caso seja atingido pelo tubarão sem fúria, a tela de game over é chamada.
+- Ítalo tem 1min e 40 segundos para finalizar a fase.
 
 ## Organização do código 
 Para elucidar melhor sobre a organização utilizada pelo grupo, segue a imagem do Spider Diagram criado. Pelo diagrama é possível ver a interação simultânea entre as diferentes classes que ocorre dentro do nosso código. 
@@ -57,7 +62,8 @@ Para a realização do projeto, utilizou-se de algumas ferramentas e bibliotecas
 - **Pygame:** Essa biblioteca importa módulos Python projetados para o desenvolvimento de jogos, tal como funcionalidades para controle de eventos, manipulação de sons e criação de gráficos, - as quais facilitam o processo de criação de um jogo 2D.
 - **Math:** Dessa biblioteca foi implementada a função **sqrt** no código com o intuito de calcular a distância entre duas instâncias de objetos e, assim, determinar se eles colidiram ou não. 
 - **Sys:** A biblioteca sys foi implementada com o intuito de encerrar o programa corretamente, especificamente com a chamada de sys.exit().
-- **Path:** Para uma melhor organização do projeto, separou-se todo código em vários arquivos ".py". Como consequência, para simplificar a navegação desses arquivos, foi implementada a função **Pathlib** da biblioteca. 
+- **Path:** Para uma melhor organização do projeto, separou-se todo código em vários arquivos ".py". Como consequência, para simplificar a navegação desses arquivos, foi implementada a função **Pathlib** da biblioteca.
+- **Time:** A biblioteca foi usada para implementar o cronômetro de finalização da fase.
 
 ## Estrutura da equipe
 Ao longo do projeto, todos os integrantes participaram, de alguma maneira, na concepção do jogo. Em relação aos papeis, todos tiveram suas funções específicas, mas também foram proativos em se ajudarem.
@@ -84,7 +90,7 @@ Por fim, é imprescindível dizer que, embora todo o estresse dos bugs que surgi
 
 Esperamos que se divirtam com o PACZINHUU! :)
 
-## [Link para a nossa apresentação]()
+## [Link para a nossa apresentação](https://www.canva.com/design/DAGNBVoJB2U/5lRxb2jQtx6mlHXrcUdKSw/edit?utm_content=DAGNBVoJB2U&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## Galeria do jogo
 
